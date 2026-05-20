@@ -31,24 +31,10 @@ function Home() {
         </div>
       </section>
 
-      <section className="home-section home-section-narrow">
+      <section className="home-section home-section-wide">
         <div className="home-section-inner">
           <span className="eyebrow">Mission</span>
           <h2>{homeContent.missionTeaser}</h2>
-        </div>
-      </section>
-
-      <section className="home-section">
-        <div className="home-section-inner">
-          <span className="eyebrow">Core Pillars</span>
-          <div className="pillar-grid">
-            {homeContent.pillars.map((pillar) => (
-              <article key={pillar.title} className="pillar-card">
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

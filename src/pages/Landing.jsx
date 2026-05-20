@@ -17,7 +17,7 @@ function Landing() {
           <Link className="hero-button hero-button-secondary" to="/about">
             About the Mission
           </Link>
-          <Link className="hero-button hero-button-primary" to="/gospel-cards">
+          <Link className="hero-button hero-button-primary" to="/witness-cards">
             View Resources
           </Link>
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import christianValuesImage from '../assets/images/christianvalues.jpeg'
-import gospelCardsImage from '../assets/images/gospelcards_flipped.jpeg'
+import witnessCardsImage from '../assets/images/gospelcards_flipped.jpeg'
 import { pageDescriptions, pageTitles, resourceCards } from '../data/siteContent'
 
 function Resources() {
@@ -9,7 +9,7 @@ function Resources() {
 
   const resourceImages = {
     'christian-values': christianValuesImage,
-    'gospel-cards': gospelCardsImage,
+    'witness-cards': witnessCardsImage,
   }
 
   useEffect(() => {

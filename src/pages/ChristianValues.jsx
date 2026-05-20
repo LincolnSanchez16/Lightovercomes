@@ -14,8 +14,11 @@ function ChristianValues() {
   const [modalImageFailed, setModalImageFailed] = useState(false)
   const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [isCategorySwitching, setIsCategorySwitching] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   const cardsRef = useRef([])
   const switchTimerRef = useRef(null)
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase()
+  const isSearching = normalizedSearchQuery.length > 0
 
   const activeCategoryData =
     christianValueCategories.find((category) => category.slug === activeCategory) ??
@@ -24,6 +27,10 @@ function ChristianValues() {
   const activeValues = christianValuesLibraryCards.filter(
     (value) => value.categorySlug === activeCategoryData.slug,
   )
+  const searchResults = christianValuesLibraryCards.filter((value) =>
+    value.title.toLowerCase().includes(normalizedSearchQuery),
+  )
+  const displayedValues = isSearching ? searchResults : activeValues
 
   useEffect(() => {
     return () => {
@@ -80,7 +87,7 @@ function ChristianValues() {
     return () => {
       observer.disconnect()
     }
-  }, [activeCategory])
+  }, [activeCategory, searchQuery])
 
   const handleCategorySelect = (categorySlug) => {
     if (categorySlug === activeCategory || isCategorySwitching) {
@@ -123,6 +130,23 @@ function ChristianValues() {
       <section className="values-page">
         <nav className="values-category-nav" aria-label="Christian values categories">
           <div className="values-category-nav-track">
+            <div className="values-search">
+              <label className="values-search-label" htmlFor="values-search-input">
+                Search Values
+              </label>
+              <input
+                id="values-search-input"
+                className="values-search-input"
+                type="search"
+                value={searchQuery}
+                placeholder="Search by title"
+                onChange={(event) => {
+                  cardsRef.current = []
+                  setSearchQuery(event.target.value)
+                }}
+              />
+            </div>
+
             {christianValueCategories.map((category) => (
               <button
                 key={category.slug}
@@ -145,36 +169,49 @@ function ChristianValues() {
           <section className="values-category-section values-category-section-active">
             <div className="values-category-header">
               <div>
-                <span className="values-category-range">{activeCategoryData.rangeLabel}</span>
-                <h2>{activeCategoryData.title}</h2>
+                <span className="values-category-range">
+                  {isSearching ? `${searchResults.length} found` : activeCategoryData.rangeLabel}
+                </span>
+                <h2>{isSearching ? 'Search Results' : activeCategoryData.title}</h2>
               </div>
-              <p>{activeCategoryData.description}</p>
+              <p>
+                {isSearching
+                  ? 'Matches are based only on value titles.'
+                  : activeCategoryData.description}
+              </p>
             </div>
 
-            <div
-              className={
-                isCategorySwitching
-                  ? 'values-grid-shell values-grid-shell-switching'
-                  : 'values-grid-shell'
-              }
-            >
-              <div className="values-grid" key={activeCategory}>
-                {activeValues.map((value, index) => (
-                  <ValueCard
-                    key={value.id}
-                    value={value}
-                    refCallback={(element) => {
-                      cardsRef.current[index] = element
-                    }}
-                    transitionDelay={`${Math.min(index * 25, 160)}ms`}
-                    onSelect={() => {
-                      setModalImageFailed(false)
-                      setSelectedValue(value)
-                    }}
-                  />
-                ))}
+            {displayedValues.length ? (
+              <div
+                className={
+                  isCategorySwitching && !isSearching
+                    ? 'values-grid-shell values-grid-shell-switching'
+                    : 'values-grid-shell'
+                }
+              >
+                <div
+                  className="values-grid"
+                  key={isSearching ? `search-${normalizedSearchQuery}` : activeCategory}
+                >
+                  {displayedValues.map((value, index) => (
+                    <ValueCard
+                      key={value.id}
+                      value={value}
+                      refCallback={(element) => {
+                        cardsRef.current[index] = element
+                      }}
+                      transitionDelay={`${Math.min(index * 25, 160)}ms`}
+                      onSelect={() => {
+                        setModalImageFailed(false)
+                        setSelectedValue(value)
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+            ) : (
+              <p className="values-empty-state">No values found.</p>
+            )}
           </section>
         </div>
       </section>
@@ -210,6 +247,7 @@ function ChristianValues() {
                   className="value-modal-image"
                   src={selectedValue.imageFull}
                   alt={selectedValue.title}
+                  decoding="async"
                   onError={() => setModalImageFailed(true)}
                 />
               </div>
@@ -219,7 +257,7 @@ function ChristianValues() {
                 <div>
                   <h2 id="value-modal-title">{selectedValue.title}</h2>
                   <p className="value-modal-placeholder-copy">
-                    Exported slide card coming soon.
+                    Content preview unavailable.
                   </p>
                 </div>
               </div>
@@ -234,9 +272,9 @@ function ChristianValues() {
               <p className="value-modal-description">{selectedValue.category}</p>
             </div>
 
-            <div className="value-modal-section">
-              <span className="value-modal-section-label">Scripture</span>
-              {selectedValue.verses.length ? (
+            {selectedValue.verses.length ? (
+              <div className="value-modal-section">
+                <span className="value-modal-section-label">Scripture</span>
                 <div className="value-modal-verses">
                   {selectedValue.verses.map((verse) => (
                     <span key={verse} className="value-modal-verse-pill">
@@ -244,17 +282,15 @@ function ChristianValues() {
                     </span>
                   ))}
                 </div>
-              ) : (
-                <p className="value-modal-description">
-                  Verse references will be added with the final card set.
-                </p>
-              )}
-            </div>
+              </div>
+            ) : null}
 
-            <div className="value-modal-section">
-              <span className="value-modal-section-label">Meaning</span>
-              <p className="value-modal-description">{selectedValue.description}</p>
-            </div>
+            {selectedValue.description ? (
+              <div className="value-modal-section">
+                <span className="value-modal-section-label">Meaning</span>
+                <p className="value-modal-description">{selectedValue.description}</p>
+              </div>
+            ) : null}
           </div>
         </div>
       ) : null}
@@ -280,14 +316,20 @@ function ValueCard({ value, refCallback, transitionDelay, onSelect }) {
             className="value-card-image"
             src={value.imageThumb}
             alt=""
+            loading="lazy"
+            decoding="async"
             onError={() => setImageFailed(true)}
           />
         </div>
-      ) : null}
+      ) : (
+        <div className="value-card-image-frame value-card-image-fallback">
+          Content preview unavailable
+        </div>
+      )}
       <span className="value-card-index">{value.id}</span>
       <div className="value-card-body">
         <h3>{value.title}</h3>
-        <p>{value.description}</p>
+        {value.description ? <p>{value.description}</p> : null}
       </div>
     </button>
   )

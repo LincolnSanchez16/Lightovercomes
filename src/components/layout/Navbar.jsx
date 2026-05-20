@@ -23,6 +23,7 @@ function Navbar() {
   const isResourcesRoute =
     pathname === '/resources' ||
     pathname === '/christian-values' ||
+    pathname === '/witness-cards' ||
     pathname === '/gospel-cards'
 
   return (
