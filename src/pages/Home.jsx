@@ -35,6 +35,7 @@ function Home() {
         <div className="home-section-inner">
           <span className="eyebrow">Mission</span>
           <h2>{homeContent.missionTeaser}</h2>
+          <p>{homeContent.visionTeaser}</p>
         </div>
       </section>
 

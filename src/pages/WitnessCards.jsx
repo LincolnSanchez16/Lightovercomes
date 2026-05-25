@@ -127,7 +127,7 @@ function WitnessCards() {
                 <div>
                   <h2 id="witness-modal-title">{selectedCard.title}</h2>
                   <p className="value-modal-placeholder-copy">
-                    This witness card is coming soon.
+                    The image for this witness card could not be loaded.
                   </p>
                 </div>
               </div>
@@ -146,9 +146,7 @@ function WitnessCard({ card, refCallback, transitionDelay, onSelect }) {
   return (
     <button
       type="button"
-      className={
-        card.isComingSoon ? 'witness-card witness-card-coming-soon' : 'witness-card'
-      }
+      className="witness-card"
       ref={refCallback}
       style={{ transitionDelay }}
       onClick={onSelect}
@@ -164,7 +162,7 @@ function WitnessCard({ card, refCallback, transitionDelay, onSelect }) {
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <span>Coming Soon</span>
+          <span>{card.title}</span>
         )}
       </div>
 

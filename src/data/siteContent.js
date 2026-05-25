@@ -1,7 +1,7 @@
 export const organizationName = 'Light Overcomes'
 
 export const tagline =
-  'Helping young Christians grow in confidence as they share their faith.'
+  'Helping people know and follow Jesus, grow in faith, and become transformed transformers.'
 
 export const navigationLinks = [
   { label: 'Home', path: '/' },
@@ -10,7 +10,7 @@ export const navigationLinks = [
 ]
 
 export const footerText =
-  'Mission-centered teaching, resources, and encouragement for young Christians learning to live and share their faith.'
+  'Resources for knowing Jesus, growing in faith, and living transformed for the sake of the world.'
 
 export const pageTitles = {
   home: 'Home',
@@ -22,7 +22,7 @@ export const pageTitles = {
 
 export const pageDescriptions = {
   home:
-    'This home page will provide a clear overview of the ministry, key resources, and next steps for visitors.',
+    'A clear overview of the Light Overcomes mission, key resources, and next steps for visitors.',
   resources:
     'Tools and teaching built to help young Christians understand, live, and share their faith.',
   christianValues:
@@ -30,7 +30,7 @@ export const pageDescriptions = {
   witnessCards:
     'Resources meant to help people start Gospel-centered conversations and share their faith clearly.',
   about:
-    'Built to help young Christians understand their faith, live it clearly, and share it with courage.',
+    'Light Overcomes exists to help people know and follow Jesus, grow in faith, and be transformed to be transformers.',
 }
 
 export const resourceCards = [
@@ -61,7 +61,9 @@ export const homeContent = {
     { label: 'View Resources', path: '/resources', variant: 'primary' },
   ],
   missionTeaser:
-    'Light Overcomes exists to help young Christians understand their faith, live it with conviction, and share it with clarity.',
+    'Know and follow Jesus. Grow in faith. Be transformed to be transformers.',
+  visionTeaser:
+    'Generations transformed by Jesus and equipped to change the world with His love and truth.',
   pillars: [
     {
       title: 'Understand',
@@ -87,9 +89,9 @@ export const homeContent = {
     path: '/resources',
   },
   aboutPreview: {
-    title: 'A focused mission with a clear purpose.',
+    title: 'Generations transformed by Jesus.',
     description:
-      'Light Overcomes is built to serve young Christians with thoughtful teaching, practical encouragement, and resources that point back to Christ.',
+      'Light Overcomes exists to help people know and follow Jesus, grow in faith, and be equipped to change the world with His love and truth.',
     label: 'Learn More About Us',
     path: '/about',
   },
@@ -99,27 +101,118 @@ export const aboutContent = {
   eyebrow: 'About Our Organization',
   title: 'About Light Overcomes',
   description:
-    'Built to help young Christians understand their faith, live it clearly, and share it with courage.',
+    'Light Overcomes exists to help people know and follow Jesus, grow in faith, and be transformed to be transformers.',
   video: {
-    label: 'Introduction Video Coming Soon',
+    label: 'Introduction Video',
     description:
       'A short introduction to the mission, vision, and heart behind Light Overcomes.',
   },
-  missionBlocks: [
+  missionVision: [
     {
-      title: 'Why We Exist',
+      title: 'Mission',
       description:
-        'To create simple resources that help young Christians grow in confidence, clarity, and faithfulness.',
+        'Know and follow Jesus. Grow in faith. Be transformed to be transformers.',
     },
     {
-      title: "Who We're Helping",
+      title: 'Vision',
       description:
-        'Young believers who want to understand what they believe and share it with others in everyday life.',
+        'Generations transformed by Jesus and equipped to change the world with His love and truth.',
+    },
+  ],
+  investing: {
+    title: 'Investing in Kingdom',
+    description:
+      'Invest in growth and witness by purchasing life-changing products. At Light Overcomes, we want to raise as much as possible to help light overcome darkness everywhere.',
+    allocationIntro:
+      '90% of profit will go toward three Kingdom purposes. The other 10% will go to groups, primarily youth groups, that help share Light Overcomes materials with other churches.',
+    allocations: [
+      '90% toward homelessness and poverty support, the next generation, and missions',
+      '10% toward groups helping share Light Overcomes materials with other churches',
+    ],
+  },
+  kingdomPurposes: [
+    {
+      title: 'Helping People Out of Homelessness and Poverty',
+      description:
+        'Light Overcomes wants to help the least of these find healing and hope by joining what God is already doing and supporting programs that help people out of homelessness and poverty. Matthew 25.',
     },
     {
-      title: "What We're Building",
+      title: 'Investing in the Next Generation',
       description:
-        'Teaching resources, Witness Cards, values-based tools, and future content designed to make faith conversations easier to begin.',
+        'Equipping and raising leaders in an amazing generation of youth.',
+    },
+    {
+      title: 'Missions',
+      description:
+        'Sharing the Gospel with all people everywhere.',
+    },
+  ],
+  joinTeam: {
+    title: 'Join the Team',
+    description:
+      'Join us in transformation. Could you tithe a few hours a week to help raise up transformers?',
+    skills: [
+      'Writing',
+      'Editing',
+      'Marketing',
+      'Illustrating',
+      'Graphic design',
+      'Intercession / prayer',
+      'Theological oversight',
+      'Administration / project management',
+    ],
+    cta: 'Join the Team',
+  },
+  coreBeliefs: [
+    {
+      title: 'The Trinity',
+      description:
+        'Belief in one God existing in three persons: the Father, the Son, Jesus Christ, and the Holy Spirit.',
+    },
+    {
+      title: 'Jesus Christ',
+      description:
+        "Jesus is the Messiah, fully God and fully man, who lived a sinless life, died by crucifixion to atone for humanity's sins, and was resurrected from the dead.",
+    },
+    {
+      title: 'Salvation and Grace',
+      description:
+        'Salvation is a gift from God by grace, not earned by works, and received through faith in Jesus.',
+    },
+    {
+      title: 'The Bible',
+      description:
+        'The Holy Bible is the inspired, God-breathed Word of God and the final authority on faith and life.',
+    },
+    {
+      title: 'Humanity and Sin',
+      description:
+        'Humanity was created for relationship with God, but sin has separated people from God.',
+    },
+    {
+      title: 'The Resurrection and Afterlife',
+      description:
+        'Belief in the resurrection of Jesus, the promise of eternal life, and the existence of heaven and hell.',
+    },
+    {
+      title: 'The Second Coming',
+      description:
+        'Jesus will return to Earth to judge the living and the dead.',
+    },
+    {
+      title: 'Worship and Life',
+      description:
+        "Followers are called to love God, follow Jesus' teachings, and worship one God.",
+    },
+    {
+      title: 'Reaching the Lost',
+      description:
+        'Believers are encouraged to use their gifts to support reaching the lost and discipling all believers.',
+    },
+    {
+      title: 'Commitment and Growth',
+      description:
+        'Be committed, get involved, learn, and grow.',
     },
   ],
   availableContent: [

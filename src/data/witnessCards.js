@@ -5,17 +5,33 @@ export const witnessCardsIntro = {
     'Short, visual cards designed to help young Christians start clear, faithful conversations about Jesus.',
 }
 
-export const witnessCards = Array.from({ length: 8 }, (_, index) => {
-  const id = index + 1
-  const paddedId = String(id).padStart(3, '0')
-  const hasImage = id === 1
-
-  return {
-    id,
-    title: `Witness Card ${id}`,
-    description: hasImage ? 'A simple visual tool for starting a Gospel conversation.' : '',
-    imageThumb: hasImage ? `/images/witness-cards/thumbs/witness-card-${paddedId}.webp` : '',
-    imageFull: hasImage ? `/images/witness-cards/full/witness-card-${paddedId}.webp` : '',
-    isComingSoon: !hasImage,
-  }
-})
+export const witnessCards = [
+  {
+    id: 1,
+    title: 'Eternal Life Is a Gift',
+    description: '',
+    imageThumb: '/images/witness-cards/thumbs/witness-card-001.webp',
+    imageFull: '/images/witness-cards/full/witness-card-001.webp',
+  },
+  {
+    id: 2,
+    title: 'Tired of a World Full of Hurt?',
+    description: '',
+    imageThumb: '/images/witness-cards/thumbs/witness-card-002.webp',
+    imageFull: '/images/witness-cards/full/witness-card-002.webp',
+  },
+  {
+    id: 3,
+    title: 'Hope Is Not Lost — Jesus Is Alive!',
+    description: '',
+    imageThumb: '/images/witness-cards/thumbs/witness-card-003.webp',
+    imageFull: '/images/witness-cards/full/witness-card-003.webp',
+  },
+  {
+    id: 4,
+    title: 'How Much Does God Love You and Me?',
+    description: '',
+    imageThumb: '/images/witness-cards/thumbs/witness-card-004.webp',
+    imageFull: '/images/witness-cards/full/witness-card-004.webp',
+  },
+]
