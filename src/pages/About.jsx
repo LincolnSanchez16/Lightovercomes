@@ -2,6 +2,12 @@ import { Link } from 'react-router-dom'
 import { aboutContent } from '../data/siteContent'
 
 const aboutVideoSrc = '/videos/about-us.mp4'
+// Investing section temporarily hidden from public page for final content cleanup.
+const showInvestingSection = false
+// Core Beliefs / Find a Church section temporarily hidden until final church guidance is reviewed.
+const showCoreBeliefsSection = false
+// Helpful External Resources temporarily hidden until links/resources are reviewed.
+const showHelpfulExternalResources = false
 
 function About() {
   return (
@@ -44,30 +50,35 @@ function About() {
         </div>
       </section>
 
-      <section className="about-section" aria-labelledby="investing-title">
-        <div className="about-section-header">
-          <span className="eyebrow">Kingdom Investment</span>
-          <h2 id="investing-title">{aboutContent.investing.title}</h2>
-          <p>{aboutContent.investing.description}</p>
-        </div>
-        <div className="about-allocation-panel">
-          <p>{aboutContent.investing.allocationIntro}</p>
-          <div className="about-allocation-grid">
-            {aboutContent.investing.allocations.map((item) => (
-              <div className="about-allocation-item" key={item}>
-                {item}
-              </div>
-            ))}
+      {showInvestingSection ? (
+        <section className="about-section" aria-labelledby="investing-title">
+          <div className="about-section-header">
+            <span className="eyebrow">Kingdom Investment</span>
+            <h2 id="investing-title">{aboutContent.investing.title}</h2>
+            <p>{aboutContent.investing.description}</p>
           </div>
-        </div>
-      </section>
+          <div className="about-allocation-panel">
+            <p>{aboutContent.investing.allocationIntro}</p>
+            <div className="about-allocation-grid">
+              {aboutContent.investing.allocations.map((item) => (
+                <div className="about-allocation-item" key={item}>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
-      <section className="about-section" aria-labelledby="kingdom-purposes-title">
+      <section className="about-section about-kingdom-section" aria-labelledby="kingdom-purposes-title">
         <div className="about-section-header">
+          <p className="about-kingdom-statement">
+            Investing in Light Overcomes Products is Investing in Kingdom Purposes:
+          </p>
           <span className="eyebrow">Kingdom Purposes</span>
-          <h2 id="kingdom-purposes-title">Three Places Profit Is Directed</h2>
+          <h2 id="kingdom-purposes-title">Three Places 100% of Profit is Directed</h2>
         </div>
-        <div className="about-card-grid about-card-grid-three">
+        <div className="about-card-grid about-card-grid-three about-kingdom-grid">
           {aboutContent.kingdomPurposes.map((purpose) => (
             <article className="about-info-card" key={purpose.title}>
               <h3>{purpose.title}</h3>
@@ -76,6 +87,11 @@ function About() {
           ))}
         </div>
       </section>
+
+      {/*
+        Original kingdom purposes section preserved above with updated public wording.
+        The investing/allocation section remains available behind showInvestingSection.
+      */}
 
       <section className="about-section" aria-labelledby="join-team-title">
         <div className="about-section-header">
@@ -97,56 +113,60 @@ function About() {
         </div>
       </section>
 
-      <section className="about-section" aria-labelledby="core-beliefs-title">
-        <div className="about-section-header">
-          <span className="eyebrow">Core Beliefs</span>
-          <h2 id="core-beliefs-title">
-            Find a Church That Follows the Core Beliefs of the Christian Faith
-          </h2>
-        </div>
-        <div className="about-beliefs-grid">
-          {aboutContent.coreBeliefs.map((belief) => (
-            <article className="about-belief-card" key={belief.title}>
-              <h3>{belief.title}</h3>
-              <p>{belief.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      {showCoreBeliefsSection ? (
+        <section className="about-section" aria-labelledby="core-beliefs-title">
+          <div className="about-section-header">
+            <span className="eyebrow">Core Beliefs</span>
+            <h2 id="core-beliefs-title">
+              Find a Church That Follows the Core Beliefs of the Christian Faith
+            </h2>
+          </div>
+          <div className="about-beliefs-grid">
+            {aboutContent.coreBeliefs.map((belief) => (
+              <article className="about-belief-card" key={belief.title}>
+                <h3>{belief.title}</h3>
+                <p>{belief.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
-      <section className="about-section" aria-labelledby="external-resources-title">
-        <div className="about-section-header">
-          <span className="eyebrow">Outside Links</span>
-          <h2 id="external-resources-title">Helpful External Resources</h2>
-          <p>These are outside tools and teachers, not content owned by Light Overcomes.</p>
-        </div>
-        <div className="about-external-grid">
-          {aboutContent.externalResources.map((group) => (
-            <div className="about-external-group" key={group.title}>
-              <h3>{group.title}</h3>
-              <div className="about-external-links">
-                {group.links.map((link) =>
-                  link.href ? (
-                    <a
-                      href={link.href}
-                      key={link.label}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <span className="about-external-placeholder" key={link.label}>
-                      {link.label}
-                      <small>Link coming soon</small>
-                    </span>
-                  ),
-                )}
+      {showHelpfulExternalResources ? (
+        <section className="about-section" aria-labelledby="external-resources-title">
+          <div className="about-section-header">
+            <span className="eyebrow">Outside Links</span>
+            <h2 id="external-resources-title">Helpful External Resources</h2>
+            <p>These are outside tools and teachers, not content owned by Light Overcomes.</p>
+          </div>
+          <div className="about-external-grid">
+            {aboutContent.externalResources.map((group) => (
+              <div className="about-external-group" key={group.title}>
+                <h3>{group.title}</h3>
+                <div className="about-external-links">
+                  {group.links.map((link) =>
+                    link.href ? (
+                      <a
+                        href={link.href}
+                        key={link.label}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <span className="about-external-placeholder" key={link.label}>
+                        {link.label}
+                        <small>Link coming soon</small>
+                      </span>
+                    ),
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="about-section" aria-labelledby="available-content-title">
         <div className="about-section-header">

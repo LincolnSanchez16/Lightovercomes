@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import heroImage from '../assets/images/lightochero.jpeg'
+import heroImage from '../assets/images/greenheroLO.jpeg'
 import { homeContent } from '../data/siteContent'
 
 function Home() {

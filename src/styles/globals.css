@@ -8,29 +8,41 @@
     sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #10233f;
-  background: #ffffff;
+  color: #183b2a;
+  background: #eef5ee;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --color-bg: #ffffff;
-  --color-bg-elevated: #ffffff;
-  --color-surface: #f7faff;
-  --color-surface-strong: #eef4fb;
-  --color-text: #10233f;
-  --color-muted: #4c607d;
-  --color-border: #dde6f0;
-  --color-border-strong: #bfd0e2;
-  --color-accent: #2d5b92;
-  --color-accent-dark: #183a64;
-  --color-accent-soft: #dce8f6;
-  --color-highlight: #3b75bc;
-  --shadow-soft: 0 6px 16px rgba(16, 35, 63, 0.025);
+  --color-bg: #eef5ee;
+  --color-bg-elevated: #f7fbf5;
+  --color-surface: #f3f8f0;
+  --color-surface-strong: #e4efdf;
+  --color-text: #183b2a;
+  --color-muted: #526b57;
+  --color-border: #d4e3cf;
+  --color-border-strong: #b8ccb2;
+  --color-accent: #386641;
+  --color-accent-dark: #2f5d46;
+  --color-accent-soft: #dcebd8;
+  --color-highlight: #386641;
+  --color-card-bg: #fbfffb;
+  --color-card-hover-bg: #f1f8ee;
+  --color-control-bg: #fbfffb;
+  --color-index: #698266;
+  --color-media-bg: #e4efdf;
+  --color-modal-backdrop: rgba(239, 246, 236, 0.56);
+  --color-hero-fallback-bg: #91a47a;
+  --color-hero-button-bg: rgba(47, 93, 70, 0.94);
+  --color-hero-button-hover-bg: rgba(56, 102, 65, 0.96);
+  --color-header-bg: rgba(247, 251, 245, 0.96);
+  --color-header-scrolled-bg: rgba(247, 251, 245, 0.74);
+  --color-header-scrolled-border: rgba(184, 204, 178, 0.86);
+  --shadow-soft: 0 6px 16px rgba(24, 59, 42, 0.035);
   --container-width: 1120px;
   --navbar-height: 5.5rem;
-  --home-hero-height: 68vh;
-  --home-hero-image-position: center 60%;
+  --home-hero-height: 84vh;
+  --home-hero-image-position: center 44%;
   --space-1: 0.75rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
@@ -138,9 +150,9 @@ button:focus-visible {
   background:
     linear-gradient(
       180deg,
-      rgba(13, 27, 43, 0.18) 0%,
-      rgba(13, 27, 43, 0.1) 34%,
-      rgba(13, 27, 43, 0.26) 100%
+      rgba(18, 35, 24, 0.18) 0%,
+      rgba(18, 35, 24, 0.1) 34%,
+      rgba(18, 35, 24, 0.26) 100%
     );
 }
 
@@ -148,12 +160,14 @@ button:focus-visible {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--color-bg);
   overflow-x: hidden;
 }
 
 .site-main {
   flex: 1;
   padding: var(--navbar-height) 0 6rem;
+  background: var(--color-bg);
 }
 
 .container {
@@ -169,11 +183,13 @@ button:focus-visible {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 10;
+  right: 0;
+  left: 0;
+  z-index: 30;
   width: 100%;
-  background: #ffffff;
+  background: var(--color-header-bg);
   border-bottom: 1px solid var(--color-border);
   transition:
     background-color 180ms ease,
@@ -183,9 +199,9 @@ button:focus-visible {
 }
 
 .site-header-scrolled {
-  background: rgba(255, 255, 255, 0.68);
-  border-bottom-color: rgba(191, 208, 226, 0.9);
-  box-shadow: 0 8px 24px rgba(16, 35, 63, 0.05);
+  background: var(--color-header-scrolled-bg);
+  border-bottom-color: var(--color-header-scrolled-border);
+  box-shadow: 0 8px 24px rgba(24, 59, 42, 0.06);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -364,15 +380,15 @@ button:focus-visible {
   padding: 0.55rem;
   border: 1px solid var(--color-border-strong);
   border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 32px rgba(16, 35, 63, 0.08);
+  background: var(--color-card-bg);
+  box-shadow: 0 12px 32px rgba(24, 59, 42, 0.08);
 }
 
 .about-video {
   width: 100%;
   aspect-ratio: 9 / 16;
   border-radius: 4px;
-  background: #10233f;
+  background: var(--color-text);
   object-fit: cover;
 }
 
@@ -382,6 +398,38 @@ button:focus-visible {
 
 .about-section-header {
   margin-bottom: 1.5rem;
+}
+
+.about-kingdom-section {
+  width: min(100%, 980px);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 2.3rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.about-kingdom-section .about-section-header {
+  width: min(100%, 760px);
+  margin-bottom: 1.9rem;
+}
+
+.about-kingdom-section .about-kingdom-statement {
+  max-width: 42rem;
+  margin: 0 auto 1.1rem;
+  color: var(--color-accent-dark);
+  font-size: clamp(1.35rem, 2.15vw, 2rem);
+  font-weight: 650;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+}
+
+.about-kingdom-section .eyebrow {
+  margin-bottom: 0.85rem;
+}
+
+.about-kingdom-section .about-section-header h2 {
+  max-width: 13ch;
+  font-size: clamp(2.25rem, 4.2vw, 3.6rem);
 }
 
 .about-card-grid,
@@ -399,6 +447,12 @@ button:focus-visible {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.about-kingdom-grid {
+  gap: 0.9rem;
+  width: min(100%, 960px);
+  margin: 0 auto;
+}
+
 .about-info-card,
 .about-link-card,
 .about-soon-item,
@@ -406,7 +460,7 @@ button:focus-visible {
 .about-belief-card {
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #fbfdff;
+  background: var(--color-card-bg);
 }
 
 .about-info-card,
@@ -435,6 +489,25 @@ button:focus-visible {
   line-height: 1.75;
 }
 
+.about-kingdom-grid .about-info-card {
+  display: grid;
+  align-content: start;
+  min-height: 13rem;
+  padding: 1.45rem 1.35rem 1.5rem;
+  background: var(--color-control-bg);
+}
+
+.about-kingdom-grid .about-info-card h3 {
+  max-width: 15rem;
+  font-size: clamp(1.12rem, 1.55vw, 1.3rem);
+  line-height: 1.12;
+}
+
+.about-kingdom-grid .about-info-card p {
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
 .about-statement-card {
   min-height: 12rem;
 }
@@ -452,7 +525,7 @@ button:focus-visible {
   padding: 1.55rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #fbfdff;
+  background: var(--color-card-bg);
 }
 
 .about-allocation-panel p {
@@ -473,7 +546,7 @@ button:focus-visible {
 .about-skill-tag {
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #ffffff;
+  background: var(--color-control-bg);
   color: var(--color-accent-dark);
   font-size: 0.9rem;
   font-weight: 700;
@@ -528,7 +601,7 @@ button:focus-visible {
 .about-link-card:hover,
 .about-link-card:focus-visible {
   border-color: var(--color-border-strong);
-  background: #f6faff;
+  background: var(--color-card-hover-bg);
   color: var(--color-text);
   transform: translateY(-2px);
 }
@@ -662,7 +735,7 @@ button:focus-visible {
 .values-banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(13, 27, 43, 0.18) 0%, rgba(13, 27, 43, 0.34) 100%);
+  background: linear-gradient(180deg, rgba(18, 35, 24, 0.18) 0%, rgba(18, 35, 24, 0.34) 100%);
 }
 
 .values-intro-hero .eyebrow,
@@ -681,7 +754,7 @@ button:focus-visible {
 
 .values-category-nav-range,
 .values-category-range {
-  color: #6e84a3;
+  color: var(--color-index);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -694,7 +767,7 @@ button:focus-visible {
   padding: 1.05rem 1.1rem;
   border: 1px solid var(--color-border);
   border-radius: 10px;
-  background: #fbfdff;
+  background: var(--color-card-bg);
 }
 
 .values-category-nav-track {
@@ -718,7 +791,7 @@ button:focus-visible {
   padding: 0.9rem 1rem 0.85rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--color-control-bg);
   color: var(--color-muted);
   font-size: 0.84rem;
   font-weight: 600;
@@ -733,15 +806,15 @@ button:focus-visible {
 
 .values-category-nav-link:hover,
 .values-category-nav-link:focus-visible {
-  background: #f5f9fe;
+  background: var(--color-card-hover-bg);
   border-color: var(--color-border-strong);
   color: var(--color-accent-dark);
   transform: translateY(-1px);
 }
 
 .values-category-nav-link-active {
-  background: #edf4fb;
-  border-color: #cbd8e8;
+  background: var(--color-accent-soft);
+  border-color: var(--color-border-strong);
   color: var(--color-accent-dark);
 }
 
@@ -761,7 +834,7 @@ button:focus-visible {
   padding: 0.72rem 1rem 0.7rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--color-control-bg);
 }
 
 .values-search-label {
@@ -779,7 +852,7 @@ button:focus-visible {
   border: 1px solid var(--color-border-strong);
   border-width: 0 0 1px;
   border-radius: 0;
-  background: #ffffff;
+  background: var(--color-control-bg);
   color: var(--color-text);
   font-size: 0.92rem;
   outline: none;
@@ -789,7 +862,7 @@ button:focus-visible {
 }
 
 .values-search-input::placeholder {
-  color: #7b8da8;
+  color: var(--color-index);
 }
 
 .values-search-input:focus {
@@ -864,9 +937,9 @@ button:focus-visible {
   padding: 1rem 1.05rem;
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #fbfdff;
+  background: var(--color-card-bg);
   color: var(--color-text);
-  box-shadow: 0 2px 10px rgba(16, 35, 63, 0.02);
+  box-shadow: 0 2px 10px rgba(24, 59, 42, 0.025);
   cursor: pointer;
   text-align: left;
   transition:
@@ -887,14 +960,14 @@ button:focus-visible {
 .value-card:hover,
 .value-card:focus-visible {
   border-color: var(--color-border-strong);
-  background: #f6faff;
+  background: var(--color-card-hover-bg);
   color: var(--color-text);
-  box-shadow: 0 10px 20px rgba(16, 35, 63, 0.04);
+  box-shadow: 0 10px 20px rgba(24, 59, 42, 0.045);
   transform: translateY(-2px);
 }
 
 .value-card-index {
-  color: #6e84a3;
+  color: var(--color-index);
   font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -911,7 +984,7 @@ button:focus-visible {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: #eef4fb;
+  background: var(--color-media-bg);
   overflow: hidden;
 }
 
@@ -956,7 +1029,7 @@ button:focus-visible {
   display: grid;
   place-items: center;
   padding: 1.25rem;
-  background: rgba(246, 249, 253, 0.46);
+  background: var(--color-modal-backdrop);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -968,8 +1041,8 @@ button:focus-visible {
   padding: 1.9rem 1.85rem 1.75rem;
   border: 1px solid var(--color-border-strong);
   border-radius: 10px;
-  background: #fbfdff;
-  box-shadow: 0 20px 48px rgba(16, 35, 63, 0.12);
+  background: var(--color-card-bg);
+  box-shadow: 0 20px 48px rgba(24, 59, 42, 0.12);
   animation: valueModalIn 220ms ease;
 }
 
@@ -995,7 +1068,7 @@ button:focus-visible {
   padding: 0.7rem 0.95rem;
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #ffffff;
+  background: var(--color-control-bg);
   color: var(--color-accent-dark);
   font-size: 0.8rem;
   font-weight: 700;
@@ -1031,7 +1104,7 @@ button:focus-visible {
   margin-bottom: 1.5rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #f5f9fe;
+  background: var(--color-card-hover-bg);
   overflow: hidden;
 }
 
@@ -1047,7 +1120,7 @@ button:focus-visible {
 }
 
 .value-modal-placeholder-index {
-  color: #6e84a3;
+  color: var(--color-index);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1072,9 +1145,9 @@ button:focus-visible {
   align-items: center;
   min-height: 2.35rem;
   padding: 0.55rem 0.8rem;
-  border: 1px solid #cbd8e8;
+  border: 1px solid var(--color-border-strong);
   border-radius: 999px;
-  background: #edf4fb;
+  background: var(--color-accent-soft);
   color: var(--color-accent-dark);
   font-size: 0.94rem;
   font-weight: 600;
@@ -1129,9 +1202,9 @@ button:focus-visible {
   padding: 1rem 1.05rem;
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  background: #fbfdff;
+  background: var(--color-card-bg);
   color: var(--color-text);
-  box-shadow: 0 2px 10px rgba(16, 35, 63, 0.02);
+  box-shadow: 0 2px 10px rgba(24, 59, 42, 0.025);
   cursor: pointer;
   opacity: 0;
   text-align: left;
@@ -1152,9 +1225,9 @@ button:focus-visible {
 .witness-card:hover,
 .witness-card:focus-visible {
   border-color: var(--color-border-strong);
-  background: #f6faff;
+  background: var(--color-card-hover-bg);
   color: var(--color-text);
-  box-shadow: 0 10px 20px rgba(16, 35, 63, 0.04);
+  box-shadow: 0 10px 20px rgba(24, 59, 42, 0.045);
   transform: translateY(-2px);
 }
 
@@ -1165,7 +1238,7 @@ button:focus-visible {
   aspect-ratio: 16 / 9;
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  background: #eef4fb;
+  background: var(--color-media-bg);
   color: var(--color-muted);
   overflow: hidden;
   font-size: 0.8rem;
@@ -1178,18 +1251,18 @@ button:focus-visible {
 .witness-card-image {
   width: 100%;
   height: 100%;
-  background: #ffffff;
+  background: var(--color-control-bg);
   object-fit: contain;
 }
 
 .witness-card-coming-soon .witness-card-image-frame {
   background:
-    linear-gradient(180deg, rgba(247, 250, 255, 0.94), rgba(238, 244, 251, 0.94)),
-    #eef4fb;
+    linear-gradient(180deg, color-mix(in srgb, var(--color-card-bg) 94%, transparent), color-mix(in srgb, var(--color-media-bg) 94%, transparent)),
+    var(--color-media-bg);
 }
 
 .witness-card-index {
-  color: #6e84a3;
+  color: var(--color-index);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1220,7 +1293,7 @@ button:focus-visible {
 
 .witness-modal-image-frame {
   min-height: 0;
-  background: #ffffff;
+  background: var(--color-control-bg);
 }
 
 .witness-modal-image {
@@ -1250,7 +1323,7 @@ button:focus-visible {
   display: block;
   min-height: 20.25rem;
   border: 1px solid var(--color-border);
-  background: #eef4fb;
+  background: var(--color-media-bg);
   overflow: hidden;
   cursor: pointer;
   opacity: 0;
@@ -1271,7 +1344,7 @@ button:focus-visible {
 .resource-card:focus-visible {
   border-color: var(--color-border-strong);
   transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(16, 35, 63, 0.085);
+  box-shadow: 0 14px 30px rgba(24, 59, 42, 0.09);
 }
 
 .resource-card-background {
@@ -1287,7 +1360,7 @@ button:focus-visible {
 .resource-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(10, 21, 36, 0.54) 0%, rgba(10, 21, 36, 0.2) 44%, rgba(10, 21, 36, 0.02) 76%);
+  background: linear-gradient(90deg, rgba(15, 31, 20, 0.54) 0%, rgba(15, 31, 20, 0.2) 44%, rgba(15, 31, 20, 0.02) 76%);
 }
 
 .resource-card[data-resource="christian-values"] .resource-card-background {
@@ -1398,7 +1471,7 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   padding: 4.5rem 1.5rem 4rem;
-  background-color: #d8c4a7;
+  background-color: var(--color-hero-fallback-bg);
 }
 
 .landing-hero-media {
@@ -1464,28 +1537,31 @@ button:focus-visible {
 }
 
 .hero-button-primary {
-  background: rgba(16, 35, 63, 0.92);
-  border-color: rgba(16, 35, 63, 0.92);
+  background: var(--color-hero-button-bg);
+  border-color: var(--color-hero-button-bg);
   color: #ffffff;
 }
 
 .hero-button-primary:hover,
 .hero-button-primary:focus-visible {
-  background: rgba(24, 58, 100, 0.94);
-  border-color: rgba(24, 58, 100, 0.94);
+  background: var(--color-hero-button-hover-bg);
+  border-color: var(--color-hero-button-hover-bg);
   color: #ffffff;
 }
 
 .hero-button-secondary {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.92);
+  background: rgba(8, 22, 15, 0.48);
+  border-color: rgba(255, 255, 255, 0.42);
   color: #ffffff;
+  box-shadow: 0 10px 28px rgba(8, 22, 15, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-button-secondary:hover,
 .hero-button-secondary:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: #ffffff;
+  background: rgba(8, 22, 15, 0.58);
+  border-color: rgba(255, 255, 255, 0.72);
   color: #ffffff;
 }
 
@@ -1543,7 +1619,7 @@ button:focus-visible {
   min-height: 14rem;
   padding: 1.75rem 1.5rem;
   border: 1px solid var(--color-border);
-  background: #ffffff;
+  background: var(--color-card-bg);
   text-align: left;
 }
 
@@ -1657,7 +1733,7 @@ button:focus-visible {
   top: -0.7rem;
   left: 50%;
   padding: 0 0.45rem;
-  background: #ffffff;
+  background: var(--color-bg);
   color: var(--color-muted);
   font-size: 0.72rem;
   font-weight: 600;
@@ -1746,9 +1822,9 @@ button:focus-visible {
 
 @media (max-width: 760px) {
   :root {
-    --navbar-height: 5.8rem;
-    --home-hero-height: 60vh;
-    --home-hero-image-position: center 58%;
+    --navbar-height: 7.2rem;
+    --home-hero-height: 72vh;
+    --home-hero-image-position: center 46%;
   }
 
   .site-header .container {

@@ -150,7 +150,7 @@ export const aboutContent = {
   joinTeam: {
     title: 'Join the Team',
     description:
-      'Join us in transformation. Could you tithe a few hours a week to help raise up transformers?',
+      'Join us in transformation. Could you donate a few hours a week to help raise up transformers?',
     skills: [
       'Writing',
       'Editing',
@@ -239,7 +239,7 @@ export const aboutContent = {
     'Digital Witness Cards',
     'Printable Resources',
     'Teaching Videos',
-    'Conversation Guides',
+    'Fresh Encounters with God: Learning from God and with God about God’s Attributes.',
     'Devotional Tools',
     'Mobile App Concepts',
   ],
@@ -266,7 +266,7 @@ export const aboutContent = {
     },
   ],
   cta: {
-    title: 'Explore the resources',
+    title: 'Explore the Resources',
     description:
       'Start with the values, cards, and tools being built to help faith become clearer and more shareable.',
     label: 'View Resources',
