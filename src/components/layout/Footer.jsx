@@ -1,12 +1,16 @@
-import { footerText, organizationName } from '../../data/siteContent'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="container footer-inner">
-        <p>{organizationName}</p>
-        <p>{footerText}</p>
-      </div>
+      <nav className="container footer-inner" aria-label="Legal links">
+        <Link className="footer-link" to="/terms">
+          Terms of Service
+        </Link>
+        <Link className="footer-link" to="/privacy">
+          Privacy Policy
+        </Link>
+      </nav>
     </footer>
   )
 }

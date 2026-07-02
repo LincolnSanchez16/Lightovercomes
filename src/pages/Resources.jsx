@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import christianValuesImage from '../assets/images/christianvalues.jpeg'
 import witnessCardsImage from '../assets/images/gospelcards_flipped.jpeg'
-import { pageDescriptions, pageTitles, resourceCards } from '../data/siteContent'
+import { bookSnippetCards, pageDescriptions, pageTitles, resourceCards } from '../data/siteContent'
 
 function Resources() {
   const cardsRef = useRef([])
@@ -10,6 +10,11 @@ function Resources() {
   const resourceImages = {
     'christian-values': christianValuesImage,
     'witness-cards': witnessCardsImage,
+  }
+
+  const snippetImages = {
+    'attributes-of-god': '/images/books/daily-encounters-attributes.png',
+    exchange: '/images/books/exchange-lies-of-the-enemy.png',
   }
 
   useEffect(() => {
@@ -45,7 +50,7 @@ function Resources() {
         <p>{pageDescriptions.resources}</p>
       </div>
 
-      <div className="resources-list">
+      <div className="resources-list" aria-label="Resource categories">
         {resourceCards.map((card) => (
           <Link
             key={card.path}
@@ -78,6 +83,38 @@ function Resources() {
           </Link>
         ))}
       </div>
+
+      <section className="book-snippets-section" aria-labelledby="book-snippets-title">
+        <div className="resources-section-heading">
+          <span className="eyebrow">Book Previews</span>
+          <h2 id="book-snippets-title" className="visually-hidden">
+            Book previews
+          </h2>
+        </div>
+
+        <div className="book-snippet-grid">
+          {bookSnippetCards.map((card) => (
+            <Link
+              className="book-snippet-card"
+              data-resource={card.key}
+              key={card.path}
+              to={card.path}
+              aria-label={`${card.title}. Click me.`}
+            >
+              <div className="book-snippet-image-wrap">
+                <img
+                  className="book-snippet-image"
+                  src={snippetImages[card.key]}
+                  alt={card.title}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="book-snippet-hover">Click me</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </section>
   )
 }

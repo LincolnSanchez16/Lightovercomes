@@ -184,16 +184,16 @@ function About() {
         </div>
       </section>
 
-      <section className="about-section" aria-labelledby="coming-soon-title">
+      <section className="about-section" aria-labelledby="in-development-title">
         <div className="about-section-header">
-          <span className="eyebrow">Future Ideas</span>
-          <h2 id="coming-soon-title">Coming Soon</h2>
+          <span className="eyebrow">In Development</span>
+          <h2 id="in-development-title">Coming Soon</h2>
         </div>
         <div className="about-soon-grid">
           {aboutContent.comingSoon.map((item) => (
             <div className="about-soon-item" key={item}>
               <span>{item}</span>
-              <small>Coming soon</small>
+              <small>In development</small>
             </div>
           ))}
         </div>

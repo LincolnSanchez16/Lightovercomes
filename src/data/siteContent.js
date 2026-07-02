@@ -5,6 +5,8 @@ export const tagline =
 
 export const navigationLinks = [
   { label: 'Home', path: '/' },
+  { label: 'Witness', path: '/witness-cards' },
+  { label: 'Store', path: '/store' },
   { label: 'Resources', path: '/resources' },
   { label: 'About', path: '/about' },
 ]
@@ -17,6 +19,9 @@ export const pageTitles = {
   resources: 'Resources',
   christianValues: 'Christian Values',
   witnessCards: 'Witness Cards',
+  store: 'Store',
+  attributesOfGod: 'Daily Encounters with God and His Attributes',
+  exchange: 'EXCHANGE: Lies of the Enemy for God’s Truth',
   about: 'About Light Overcomes',
 }
 
@@ -29,6 +34,12 @@ export const pageDescriptions = {
     'This page will outline the Christian values, beliefs, and guiding principles behind the organization.',
   witnessCards:
     'Resources meant to help people start Gospel-centered conversations and share their faith clearly.',
+  store:
+    'Witness card sets and future Light Overcomes resources ready to point people toward Jesus.',
+  attributesOfGod:
+    'A devotional preview inviting readers to behold the greatness, goodness, wisdom, and glory of God.',
+  exchange:
+    'A devotional preview built to help readers replace lies of the enemy with the truth of God’s Word.',
   about:
     'Light Overcomes exists to help people know and follow Jesus, grow in faith, and be transformed to be transformers.',
 }
@@ -53,6 +64,156 @@ export const resourceCards = [
     key: 'witness-cards',
   },
 ]
+
+export const shopStoreUrl = 'https://lightovercomes.printify.me/'
+
+export const storeContent = {
+  eyebrow: 'Store',
+  title: 'Carry the conversation with you.',
+  description:
+    'If a witness card helped you stop, think, or talk about Jesus, get a set you can hand to someone else.',
+  cta: 'Open Store',
+}
+
+export const bookSnippetCards = [
+  {
+    label: 'Book Preview',
+    title: 'Daily Encounters with God and His Attributes',
+    description:
+      'A devotional invitation to behold who God is with awe, worship, and deeper faith.',
+    cta: 'Read Preview',
+    path: '/attributes-of-god',
+    key: 'attributes-of-god',
+  },
+  {
+    label: 'Book Preview',
+    title: 'EXCHANGE',
+    description:
+      'A devotional tool for replacing deception with truth, shame with grace, fear with faith, and bondage with freedom.',
+    cta: 'Read Preview',
+    path: '/exchange',
+    key: 'exchange',
+  },
+]
+
+export const attributesOfGodPage = {
+  eyebrow: 'Book Preview',
+  title: 'Daily Encounters with God and His Attributes',
+  coverImage: '/images/books/daily-encounters-attributes.png',
+  intro: [
+    'Is our God ordinary, humdrum, boring, or dull? Absolutely not.',
+    'James 2:19 tells us that even the demons believe there is one God — and they shudder. If the enemies of God tremble at the reality of who He is, how much more should we, His beloved children, live with holy awe, humble wonder, and joyful worship before Him?',
+    'We have the incredible privilege of knowing God — not just learning facts about Him, but growing in a deeper relationship with Him throughout our lives and for all eternity. Every day gives us a new opportunity to behold His greatness, rest in His goodness, trust His wisdom, and respond to His love.',
+    'Daily Encounters with God and His Attributes is designed to help bring your heart before the throne of God each day. Each devotional focuses on a different attribute of God, inviting you to see Him more clearly, worship Him more deeply, and live with greater faith, reverence, and amazement.',
+    'The more we know God, the more we will love Him. The more we love Him, the more we will worship Him. And the more we worship Him, the more our lives will be transformed by His glory.',
+  ],
+  scripture:
+    '“...Holy, holy, holy is the Lord Almighty; the whole earth is full of his glory.” Isaiah 6:3',
+  attributes: [
+    'God is Eternal',
+    'God is Infinite',
+    'God is Wise',
+    'God is Immutable',
+    'God is Almighty',
+    'God is Incomprehensible',
+    'God is Triune',
+    'God is Spirit',
+    'God is Holy',
+    'God is Love',
+    'God is Just',
+    'God is King of Kings and Lord of Lords',
+    'God is Righteous',
+    'God is the Living and True God',
+    'God is Invisible',
+    'God is Our Help',
+    'God is Forgiving',
+    'God is a Rewarder of Those Who Seek Him',
+    'God is Merciful',
+    'God is Gracious',
+    'God is Long-suffering',
+    'God is Good',
+    'God is All-Sufficient',
+    'God is Omniscient',
+    'God is Omnipresent',
+    'God is Sovereign',
+    'God is Creator',
+    'God is Sustainer',
+    'God is Provider',
+    'God is Protector',
+    'God is Healer',
+    'God is Comforter',
+    'God is Reconciler',
+    'God is Justifier',
+    'God is Sanctifier',
+    'God Gives Wisdom',
+    'God is a Covenant Making and Covenant Keeping God',
+    'God is Victorious',
+    'God is Glorious',
+    'God is Faithful',
+    'God is Truth',
+    'God is Jealous',
+    'God is Self-Sufficient',
+    'God is Majestic',
+    'God is Light',
+    'God is Father',
+    'God is a God of Peace',
+    'God is a God of Hope',
+  ],
+}
+
+export const exchangeBookPage = {
+  eyebrow: 'Book Preview',
+  title: 'EXCHANGE',
+  subtitle: 'Lies of the Enemy for God’s Truth',
+  coverImage: '/images/books/exchange-lies-of-the-enemy.png',
+  intro: [
+    'Are you tired of believing lies that keep you trapped?',
+    'Many of the battles we face begin in the mind. Thoughts like “God doesn’t love me anymore,” “I’ll never change,” “I’m too broken,” “My past defines me,” or “I don’t matter” can feel true in moments of fear, shame, temptation, or discouragement.',
+    'But not every thought that enters your mind comes from God.',
+    'EXCHANGE was created to help you recognize the lies of the enemy and replace them with the truth of God’s Word. Each devotional exposes a common lie, answers it with Scripture, invites personal reflection, and leads you in prayer so you can renew your mind and walk in freedom.',
+    'This is not just a book of positive thoughts. It is a spiritual tool for replacing deception with truth, shame with grace, fear with faith, and bondage with freedom through Jesus Christ.',
+  ],
+  insideTitle: 'What You’ll Find Inside',
+  insideIntro: 'Each devotion helps you make a powerful exchange:',
+  devotionParts: [
+    {
+      title: 'Satan’s Lie',
+      description:
+        'The false belief that keeps people discouraged, afraid, ashamed, or stuck.',
+    },
+    {
+      title: 'God’s Truth',
+      description:
+        'The biblical truth that reveals who God is and who you are in Christ.',
+    },
+    {
+      title: 'God’s Word Says',
+      description: 'A Scripture that confirms the truth.',
+    },
+    {
+      title: 'Reflection',
+      description:
+        'A question and action step to help apply the truth personally.',
+    },
+    {
+      title: 'Prayer',
+      description: 'A guided prayer to help you respond to God.',
+    },
+    {
+      title: 'Truth to Remember',
+      description: 'One simple statement to carry with you throughout the day.',
+    },
+  ],
+  forYouTitle: 'This Book Is for You If You Have Ever Thought:',
+  lies: [
+    'God doesn’t love me anymore.',
+    'I’ve sinned too much to be forgiven.',
+    'I’ll never change.',
+    'My past defines me.',
+    'I am alone.',
+    'I don’t matter.',
+  ],
+}
 
 export const homeContent = {
   title: 'Light Overcomes',

@@ -9,10 +9,11 @@ Previous green hero crop before expanding to show more sun:
 - Mobile hero height: `60vh`
 - Mobile image position: `center 58%`
 
-Current sun-forward crop:
+Current hero image:
+- Image: `src/assets/images/LOnewgreen.jpeg`
 - Desktop hero height: `84vh`
 - Desktop image position: `center 44%`
 - Mobile hero height: `72vh`
 - Mobile image position: `center 46%`
 
-The old image file `src/assets/images/lightochero.jpeg` remains in the repo in case the hero image itself needs to switch back.
+The old image files `src/assets/images/greenheroLO.jpeg` and `src/assets/images/lightochero.jpeg` remain in the repo in case the hero image itself needs to switch back.
