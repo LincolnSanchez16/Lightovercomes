@@ -1934,6 +1934,7 @@ button:focus-visible {
   font-size: clamp(1.25rem, 1.8vw, 1.55rem);
   line-height: 1.06;
   letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
 }
 
 .witness-video-player-frame {
@@ -1949,6 +1950,8 @@ button:focus-visible {
 .witness-video-active-footer {
   display: grid;
   gap: 0.35rem;
+  width: 100%;
+  min-width: 0;
   text-align: center;
 }
 
@@ -2101,7 +2104,10 @@ button:focus-visible {
   position: relative;
   display: grid;
   gap: 1rem;
-  width: min(100%, 520px);
+  justify-items: center;
+  width: min(520px, max(9rem, calc(56.25svh - 4.5rem)), calc(100vw - 3rem));
+  max-width: calc(100vw - 3rem);
+  max-height: calc(100svh - 3rem);
   padding: clamp(0.75rem, 2vw, 1rem);
   border: 1px solid color-mix(in srgb, var(--color-border-strong) 60%, transparent);
   border-radius: 12px;
@@ -2111,7 +2117,8 @@ button:focus-visible {
 
 .witness-video-modal .witness-video-player-frame {
   aspect-ratio: 9 / 16;
-  max-height: min(76vh, 760px);
+  width: 100%;
+  max-height: min(calc(100svh - 9.25rem), 760px);
 }
 
 .witness-video-modal-close {
@@ -3136,11 +3143,13 @@ button:focus-visible {
   }
 
   .witness-video-modal {
-    width: min(100%, 25rem);
+    width: min(25rem, max(12rem, calc(56.25svh - 3.5rem)), calc(100vw - 1.5rem));
+    max-width: calc(100vw - 1.5rem);
+    max-height: calc(100svh - 1.5rem);
   }
 
   .witness-video-modal .witness-video-player-frame {
-    max-height: 72vh;
+    max-height: min(calc(100svh - 8rem), 720px);
   }
 
   .home-section {
