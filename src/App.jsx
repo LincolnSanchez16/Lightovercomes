@@ -4,6 +4,7 @@ import MainLayout from './components/layout/MainLayout'
 import Navbar from './components/layout/Navbar'
 import About from './pages/About'
 import AttributesOfGod from './pages/AttributesOfGod'
+import CallingAllLeaders from './pages/CallingAllLeaders'
 import ChristianValues from './pages/ChristianValues'
 import Exchange from './pages/Exchange'
 import Home from './pages/Home'
@@ -22,6 +23,8 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/christian-values" element={<ChristianValues />} />
+        <Route path="/calling-all-leaders" element={<CallingAllLeaders />} />
+        <Route path="/called-to-be-warriors-leaders-and-champions" element={<Navigate to="/calling-all-leaders" replace />} />
         <Route path="/attributes-of-god" element={<AttributesOfGod />} />
         <Route path="/daily-encounters-with-god" element={<Navigate to="/attributes-of-god" replace />} />
         <Route path="/exchange" element={<Exchange />} />

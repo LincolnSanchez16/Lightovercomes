@@ -24,6 +24,8 @@ function Navbar() {
   const isResourcesRoute =
     pathname === '/resources' ||
     pathname === '/christian-values' ||
+    pathname === '/calling-all-leaders' ||
+    pathname === '/called-to-be-warriors-leaders-and-champions' ||
     pathname === '/witness-card-library' ||
     pathname === '/attributes-of-god' ||
     pathname === '/daily-encounters-with-god' ||

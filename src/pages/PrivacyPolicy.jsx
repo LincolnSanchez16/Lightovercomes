@@ -3,7 +3,7 @@ const sections = [
     title: 'Information We Collect',
     body: [
       'Light Overcomes currently provides public ministry resources, witness card videos, book previews, store links, and informational pages. You can browse the website without creating an account.',
-      'If you contact us, join a future email list, request updates, give feedback, or submit a testimony or message, we may collect the information you choose to provide, such as your name, email address, message content, and communication preferences.',
+      'If you subscribe for updates, request a resource, contact us, give feedback, or submit a testimony or message, we may collect the information you choose to provide, such as your name, email address, message content, communication preferences, signup source, and consent date.',
       'If giving, store, or event features are added later, payment and donation information may be handled by third-party providers such as Subsplash or other payment, store, or ministry platforms. Light Overcomes should not collect full payment card numbers directly on this website.',
     ],
   },
@@ -11,7 +11,7 @@ const sections = [
     title: 'How We Use Information',
     body: [
       'We may use information to respond to messages, send requested updates, improve resources, manage future email communication, understand what content is useful, protect the website, and support the ministry purposes of Light Overcomes.',
-      'If a newsletter is added, emails should include a way to unsubscribe from future marketing or update messages.',
+      'Email updates will include a way to unsubscribe from future marketing or ministry update messages.',
     ],
   },
   {
@@ -19,12 +19,13 @@ const sections = [
     body: [
       'The website may collect basic technical information such as browser type, device information, pages visited, referring pages, and approximate usage patterns. This can happen through normal server logs, hosting tools, analytics tools, embedded media, or similar technologies.',
       'Cookies or similar technologies may be used by the website or by third-party services to keep features working, measure site performance, protect against misuse, or support embedded content.',
+      'The website may use browser storage to remember when you dismiss or complete an email signup prompt. This preference stays on your device and does not contain your submitted email address.',
     ],
   },
   {
     title: 'Third-Party Services',
     body: [
-      'This website may link to or embed content from third-party services, including video platforms, store providers, donation platforms, analytics providers, email services, and hosting services.',
+      'This website may link to or embed content from third-party services, including Supabase for email-list storage, video platforms, store providers, donation platforms, analytics providers, email services, and hosting services.',
       'When you use a third-party service, that provider may collect and process information under its own privacy policy and terms. For future giving, Subsplash may process donor and payment-related information according to its own policies.',
     ],
   },
@@ -46,7 +47,7 @@ const sections = [
     title: 'Data Choices',
     body: [
       'You may ask to update, correct, or delete information you have provided, subject to legal, security, donation, transaction, or recordkeeping needs.',
-      'If email updates are added, you may unsubscribe using the method provided in those emails or through the contact method offered by Light Overcomes.',
+      'You may unsubscribe from email updates using the method provided in those emails or through the contact method offered by Light Overcomes.',
     ],
   },
   {
@@ -76,7 +77,7 @@ function PrivacyPolicy() {
       <div className="terms-header">
         <span className="eyebrow">Privacy Policy</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: July 2, 2026</p>
+        <p>Last updated: July 22, 2026</p>
       </div>
 
       <div className="terms-content" aria-label="Privacy Policy content">

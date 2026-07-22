@@ -2,10 +2,13 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import christianValuesImage from '../assets/images/christianvalues.jpeg'
 import witnessCardsImage from '../assets/images/gospelcards_flipped.jpeg'
+import EmailSignupForm from '../components/email/EmailSignupForm'
 import { bookSnippetCards, pageDescriptions, pageTitles, resourceCards } from '../data/siteContent'
+import { isEmailSignupVisible } from '../lib/emailSubscribers'
 
 function Resources() {
   const cardsRef = useRef([])
+  const visibleResourceCards = resourceCards.filter((card) => card.published !== false)
 
   const resourceImages = {
     'christian-values': christianValuesImage,
@@ -15,6 +18,7 @@ function Resources() {
   const snippetImages = {
     'attributes-of-god': '/images/books/daily-encounters-attributes.png',
     exchange: '/images/books/exchange-lies-of-the-enemy.png',
+    'calling-all-leaders': '/images/books/calling-all-leaders.png',
   }
 
   useEffect(() => {
@@ -51,13 +55,13 @@ function Resources() {
       </div>
 
       <div className="resources-list" aria-label="Resource categories">
-        {resourceCards.map((card) => (
+        {visibleResourceCards.map((card, index) => (
           <Link
             key={card.path}
             className="resource-card"
             data-resource={card.key}
             ref={(element) => {
-              cardsRef.current[resourceCards.findIndex((item) => item.path === card.path)] = element
+              cardsRef.current[index] = element
             }}
             to={card.path}
           >
@@ -115,6 +119,21 @@ function Resources() {
           ))}
         </div>
       </section>
+
+      {isEmailSignupVisible ? (
+        <section className="resources-email-signup" aria-labelledby="resources-email-signup-title">
+          <div>
+            <span className="eyebrow">Stay Connected</span>
+            <h2 id="resources-email-signup-title">New resources, sent when they are ready.</h2>
+          </div>
+          <div className="resources-email-signup-form">
+            <p>
+              Receive new teaching, ministry updates, and future Light Overcomes releases.
+            </p>
+            <EmailSignupForm pagePath="/resources" source="resources-inline" />
+          </div>
+        </section>
+      ) : null}
     </section>
   )
 }

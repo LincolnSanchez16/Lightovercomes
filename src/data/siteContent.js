@@ -18,6 +18,7 @@ export const pageTitles = {
   home: 'Home',
   resources: 'Resources',
   christianValues: 'Christian Values',
+  callingAllLeaders: 'Called to Be Warriors, Leaders, and Champions',
   witnessCards: 'Witness Cards',
   store: 'Store',
   attributesOfGod: 'Daily Encounters with God and His Attributes',
@@ -32,6 +33,8 @@ export const pageDescriptions = {
     'Tools and teaching built to help young Christians understand, live, and share their faith.',
   christianValues:
     'This page will outline the Christian values, beliefs, and guiding principles behind the organization.',
+  callingAllLeaders:
+    'A Christ-centered devotional calling readers out of shame, secrecy, and bondage and into freedom through Jesus.',
   witnessCards:
     'Resources meant to help people start Gospel-centered conversations and share their faith clearly.',
   store:
@@ -93,6 +96,15 @@ export const bookSnippetCards = [
     cta: 'Read Preview',
     path: '/exchange',
     key: 'exchange',
+  },
+  {
+    label: 'Book Preview',
+    title: 'Called to Be Warriors, Leaders, and Champions',
+    description:
+      'A Christ-centered devotional for breaking bondage to pornography and other sins.',
+    cta: 'Read Preview',
+    path: '/calling-all-leaders',
+    key: 'calling-all-leaders',
   },
 ]
 

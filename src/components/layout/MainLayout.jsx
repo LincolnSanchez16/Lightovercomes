@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import EmailSignupPrompt from '../email/EmailSignupPrompt'
 
 function MainLayout({ navbar, footer }) {
   const { pathname } = useLocation()
@@ -17,6 +18,7 @@ function MainLayout({ navbar, footer }) {
         </div>
       </main>
       {footer}
+      <EmailSignupPrompt />
     </div>
   )
 }
