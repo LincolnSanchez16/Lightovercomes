@@ -51,10 +51,10 @@ export const witnessCards = [
 ]
 
 export const witnessVideoIntro = {
-  eyebrow: 'Witness Videos',
-  title: 'Choose the card you received',
+  eyebrow: 'Witness Cards',
+  title: 'Find & Share Hope',
   description:
-    'Tap the witness card to watch the short message connected to it.',
+    'Tap a witness card to play a short message about that topic.',
 }
 
 const endCta = (triggerAfterSeconds) => ({

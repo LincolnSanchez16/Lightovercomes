@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Menu, X } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { navigationLinks, organizationName } from '../../data/siteContent'
 
@@ -71,16 +72,11 @@ function Navbar() {
           aria-controls="primary-navigation"
           onClick={() => setIsMenuOpen((currentValue) => !currentValue)}
         >
-          <svg
-            className="nav-menu-icon"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path d="M4 6h16" />
-            <path d="M4 12h16" />
-            <path d="M4 18h16" />
-          </svg>
+          {isMenuOpen ? (
+            <X className="nav-menu-icon" aria-hidden="true" />
+          ) : (
+            <Menu className="nav-menu-icon" aria-hidden="true" />
+          )}
         </button>
 
         <nav

@@ -1,43 +1,70 @@
+import { ChevronDown } from 'lucide-react'
+import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { aboutContent } from '../data/siteContent'
+import heroImage from '../assets/images/LOnewgreen.jpeg'
+import EmailSignupForm from '../components/email/EmailSignupForm'
+import { aboutContent, shopStoreUrl } from '../data/siteContent'
+import { isEmailSignupVisible } from '../lib/emailSubscribers'
 
 const aboutVideoSrc = '/videos/about-us.mp4'
-// Investing section temporarily hidden from public page for final content cleanup.
-const showInvestingSection = false
-// Core Beliefs / Find a Church section temporarily hidden until final church guidance is reviewed.
-const showCoreBeliefsSection = false
-// Helpful External Resources temporarily hidden until links/resources are reviewed.
-const showHelpfulExternalResources = false
+const aboutVideoPoster = '/images/about-video-poster.jpg'
+
+function AboutDisclosure({ children, eyebrow, title }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const panelId = useId()
+
+  return (
+    <div className={`about-disclosure${isOpen ? ' is-open' : ''}`}>
+      <button
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        className="about-disclosure-summary"
+        onClick={() => setIsOpen((current) => !current)}
+        type="button"
+      >
+        <span>
+          <small>{eyebrow}</small>
+          <strong>{title}</strong>
+        </span>
+        <ChevronDown className="about-disclosure-icon" aria-hidden="true" />
+      </button>
+      <div aria-hidden={!isOpen} className="about-disclosure-panel" id={panelId}>
+        <div className="about-disclosure-panel-clip">
+          <div className="about-disclosure-content">{children}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function About() {
   return (
     <section className="about-page">
-      <div className="about-intro">
-        <span className="eyebrow">{aboutContent.eyebrow}</span>
-        <h1>{aboutContent.title}</h1>
-        <p>{aboutContent.description}</p>
+      <div className="about-opening">
+        <div className="about-intro">
+          <h1>{aboutContent.title}</h1>
+          <p>{aboutContent.description}</p>
+        </div>
+
+        <section className="about-video-section" aria-labelledby="about-video-title">
+          <h2 className="visually-hidden" id="about-video-title">
+            {aboutContent.video.label}
+          </h2>
+          <div className="about-video-frame">
+            <video
+              className="about-video"
+              controls
+              playsInline
+              preload="metadata"
+              poster={aboutVideoPoster}
+              src={aboutVideoSrc}
+            />
+          </div>
+        </section>
       </div>
-
-      <section className="about-video-section" aria-labelledby="about-video-title">
-        <div className="about-video-copy">
-          <h2 id="about-video-title">{aboutContent.video.label}</h2>
-          <p>{aboutContent.video.description}</p>
-        </div>
-
-        <div className="about-video-frame">
-          <video
-            className="about-video"
-            controls
-            playsInline
-            preload="metadata"
-            src={aboutVideoSrc}
-          />
-        </div>
-      </section>
 
       <section className="about-section" aria-labelledby="about-purpose-title">
         <div className="about-section-header">
-          <span className="eyebrow">Mission</span>
           <h2 id="about-purpose-title">Mission and Vision</h2>
         </div>
         <div className="about-card-grid about-statement-grid">
@@ -50,162 +77,146 @@ function About() {
         </div>
       </section>
 
-      {showInvestingSection ? (
-        <section className="about-section" aria-labelledby="investing-title">
-          <div className="about-section-header">
-            <span className="eyebrow">Kingdom Investment</span>
-            <h2 id="investing-title">{aboutContent.investing.title}</h2>
-            <p>{aboutContent.investing.description}</p>
-          </div>
-          <div className="about-allocation-panel">
-            <p>{aboutContent.investing.allocationIntro}</p>
-            <div className="about-allocation-grid">
-              {aboutContent.investing.allocations.map((item) => (
-                <div className="about-allocation-item" key={item}>
-                  {item}
+      <section className="about-disclosures" aria-labelledby="about-discover-title">
+        <div className="about-section-header">
+          <span className="eyebrow">Discover</span>
+          <h2 id="about-discover-title">Explore Light Overcomes</h2>
+        </div>
+
+        <div className="about-disclosure-list">
+          <AboutDisclosure eyebrow="Kingdom Investment" title="Invest in the Kingdom">
+            <div className="about-disclosure-intro">
+              <h3>{aboutContent.investing.title}</h3>
+              <p>{aboutContent.investing.description}</p>
+            </div>
+            <div className="about-card-grid about-card-grid-three about-kingdom-grid">
+              {aboutContent.kingdomPurposes.map((purpose) => (
+                <article className="about-info-card" key={purpose.title}>
+                  <h3>{purpose.title}</h3>
+                </article>
+              ))}
+            </div>
+            <div className="about-section-action">
+              <a className="inline-page-button" href={shopStoreUrl} target="_blank" rel="noreferrer">
+                Shop with Purpose
+              </a>
+            </div>
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="Resources" title="Get Free Resources">
+            <div className="about-disclosure-intro">
+              <h3>Choose what will help you grow and share your faith.</h3>
+              <p>Explore free values, witness messages, book previews, and practical tools.</p>
+            </div>
+            <div className="about-section-action">
+              <Link className="inline-page-button" to="/resources">
+                Choose Resources
+              </Link>
+            </div>
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="Serve" title="Join the Team">
+            <div className="about-disclosure-intro">
+              <h3>{aboutContent.joinTeam.title}</h3>
+              <p>{aboutContent.joinTeam.description}</p>
+            </div>
+            <div className="about-skill-grid" aria-label="Skills and gifts needed">
+              {aboutContent.joinTeam.skills.map((skill) => (
+                <span className="about-skill-tag" key={skill}>
+                  {skill}
+                </span>
+              ))}
+            </div>
+            <div className="about-section-action">
+              <a className="inline-page-button" href={aboutContent.joinTeam.contactHref}>
+                Contact Us
+              </a>
+            </div>
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="Current Tools" title="Content Available">
+            <div className="about-card-grid about-card-grid-three">
+              {aboutContent.availableContent.map((item) => (
+                <Link className="about-link-card" key={item.path} to={item.path}>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <span>Open</span>
+                </Link>
+              ))}
+            </div>
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="In Development" title="Coming Soon">
+            <div className="about-soon-grid">
+              {aboutContent.comingSoon.map((item) => (
+                <div className="about-soon-item" key={item}>
+                  <span>{item}</span>
+                  <small>In development</small>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="about-section about-kingdom-section" aria-labelledby="kingdom-purposes-title">
-        <div className="about-section-header">
-          <p className="about-kingdom-statement">
-            Investing in Light Overcomes Products is Investing in Kingdom Purposes:
-          </p>
-          <span className="eyebrow">Kingdom Purposes</span>
-          <h2 id="kingdom-purposes-title">Three Places 100% of Profit is Directed</h2>
-        </div>
-        <div className="about-card-grid about-card-grid-three about-kingdom-grid">
-          {aboutContent.kingdomPurposes.map((purpose) => (
-            <article className="about-info-card" key={purpose.title}>
-              <h3>{purpose.title}</h3>
-              <p>{purpose.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/*
-        Original kingdom purposes section preserved above with updated public wording.
-        The investing/allocation section remains available behind showInvestingSection.
-      */}
-
-      <section className="about-section" aria-labelledby="join-team-title">
-        <div className="about-section-header">
-          <span className="eyebrow">Serve</span>
-          <h2 id="join-team-title">{aboutContent.joinTeam.title}</h2>
-          <p>{aboutContent.joinTeam.description}</p>
-        </div>
-        <div className="about-skill-grid" aria-label="Skills and gifts needed">
-          {aboutContent.joinTeam.skills.map((skill) => (
-            <span className="about-skill-tag" key={skill}>
-              {skill}
-            </span>
-          ))}
-        </div>
-        <div className="about-section-action">
-          <a className="inline-page-button" href="#about-cta-title">
-            {aboutContent.joinTeam.cta}
-          </a>
-        </div>
-      </section>
-
-      {showCoreBeliefsSection ? (
-        <section className="about-section" aria-labelledby="core-beliefs-title">
-          <div className="about-section-header">
-            <span className="eyebrow">Core Beliefs</span>
-            <h2 id="core-beliefs-title">
-              Find a Church That Follows the Core Beliefs of the Christian Faith
-            </h2>
-          </div>
-          <div className="about-beliefs-grid">
-            {aboutContent.coreBeliefs.map((belief) => (
-              <article className="about-belief-card" key={belief.title}>
-                <h3>{belief.title}</h3>
-                <p>{belief.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      {showHelpfulExternalResources ? (
-        <section className="about-section" aria-labelledby="external-resources-title">
-          <div className="about-section-header">
-            <span className="eyebrow">Outside Links</span>
-            <h2 id="external-resources-title">Helpful External Resources</h2>
-            <p>These are outside tools and teachers, not content owned by Light Overcomes.</p>
-          </div>
-          <div className="about-external-grid">
-            {aboutContent.externalResources.map((group) => (
-              <div className="about-external-group" key={group.title}>
-                <h3>{group.title}</h3>
-                <div className="about-external-links">
-                  {group.links.map((link) =>
-                    link.href ? (
-                      <a
-                        href={link.href}
-                        key={link.label}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {link.label}
-                      </a>
-                    ) : (
-                      <span className="about-external-placeholder" key={link.label}>
-                        {link.label}
-                        <small>Link coming soon</small>
-                      </span>
-                    ),
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      <section className="about-section" aria-labelledby="available-content-title">
-        <div className="about-section-header">
-          <span className="eyebrow">Current Tools</span>
-          <h2 id="available-content-title">Available Content</h2>
-        </div>
-        <div className="about-card-grid about-card-grid-three">
-          {aboutContent.availableContent.map((item) => (
-            <Link className="about-link-card" key={item.path} to={item.path}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <span>Open</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-section" aria-labelledby="in-development-title">
-        <div className="about-section-header">
-          <span className="eyebrow">In Development</span>
-          <h2 id="in-development-title">Coming Soon</h2>
-        </div>
-        <div className="about-soon-grid">
-          {aboutContent.comingSoon.map((item) => (
-            <div className="about-soon-item" key={item}>
-              <span>{item}</span>
-              <small>In development</small>
+            <div className="about-print-options">
+              <h3>Witness Card Options</h3>
+              <p>
+                Downloadable print-shop files are being explored as a more affordable option. Shipped
+                witness cards are already available through the Light Overcomes store.
+              </p>
+              <a className="inline-page-button" href={shopStoreUrl} target="_blank" rel="noreferrer">
+                Order Shipped Cards
+              </a>
             </div>
-          ))}
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="Start Here" title="Explore the Resources">
+            <div className="about-disclosure-intro">
+              <h3>{aboutContent.cta.title}</h3>
+              <p>{aboutContent.cta.description}</p>
+            </div>
+            <div className="about-section-action">
+              <Link className="inline-page-button" to={aboutContent.cta.path}>
+                {aboutContent.cta.label}
+              </Link>
+            </div>
+          </AboutDisclosure>
+
+          <AboutDisclosure eyebrow="Core Beliefs" title="What We Believe">
+            <div className="about-disclosure-intro">
+              <h3>Find a Church That Follows the Core Beliefs of the Christian Faith</h3>
+              <p>Look for a church that teaches Scripture clearly and helps people follow Jesus.</p>
+            </div>
+            <div className="about-beliefs-grid">
+              {aboutContent.coreBeliefs.map((belief) => (
+                <article className="about-belief-card" key={belief.title}>
+                  <h3>{belief.title}</h3>
+                  <p>{belief.description}</p>
+                </article>
+              ))}
+            </div>
+          </AboutDisclosure>
         </div>
       </section>
 
-      <section className="about-cta" aria-labelledby="about-cta-title">
-        <h2 id="about-cta-title">{aboutContent.cta.title}</h2>
-        <p>{aboutContent.cta.description}</p>
-        <Link className="inline-page-button" to={aboutContent.cta.path}>
-          {aboutContent.cta.label}
-        </Link>
-      </section>
+      {isEmailSignupVisible ? (
+        <section className="about-email-signup" aria-labelledby="about-email-signup-title">
+          <div className="about-email-signup-media" aria-hidden="true">
+            <img src={heroImage} alt="" />
+            <div className="about-email-signup-overlay" />
+          </div>
+          <div className="about-email-signup-inner">
+            <div>
+              <span className="eyebrow">Stay Connected</span>
+              <h2 id="about-email-signup-title">Stay close to what is being built.</h2>
+            </div>
+            <div className="about-email-signup-form">
+              <p>
+                Receive new resources, ministry updates, and opportunities to take part in the
+                mission of Light Overcomes.
+              </p>
+              <EmailSignupForm pagePath="/about" source="about-inline" />
+            </div>
+          </div>
+        </section>
+      ) : null}
     </section>
   )
 }

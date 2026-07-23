@@ -5,10 +5,10 @@ export const tagline =
 
 export const navigationLinks = [
   { label: 'Home', path: '/' },
-  { label: 'Witness', path: '/witness-cards' },
-  { label: 'Store', path: '/store' },
-  { label: 'Resources', path: '/resources' },
   { label: 'About', path: '/about' },
+  { label: 'Resources', path: '/resources' },
+  { label: 'Find & Share Hope', path: '/witness-cards' },
+  { label: 'Store', path: '/store' },
 ]
 
 export const footerText =
@@ -19,7 +19,7 @@ export const pageTitles = {
   resources: 'Resources',
   christianValues: 'Christian Values',
   callingAllLeaders: 'Called to Be Warriors, Leaders, and Champions',
-  witnessCards: 'Witness Cards',
+  witnessCards: 'Find & Share Hope',
   store: 'Store',
   attributesOfGod: 'Daily Encounters with God and His Attributes',
   exchange: 'EXCHANGE: Lies of the Enemy for God’s Truth',
@@ -72,15 +72,15 @@ export const shopStoreUrl = 'https://lightovercomes.printify.me/'
 
 export const storeContent = {
   eyebrow: 'Store',
-  title: 'Carry the conversation with you.',
+  title: 'Share the Hope of Jesus - EVERYWHERE you go!',
   description:
-    'If a witness card helped you stop, think, or talk about Jesus, get a set you can hand to someone else.',
+    'Get a set of cards you can hand to people to share Jesus!',
   cta: 'Open Store',
 }
 
 export const bookSnippetCards = [
   {
-    label: 'Book Preview',
+    label: 'Coming Soon',
     title: 'Daily Encounters with God and His Attributes',
     description:
       'A devotional invitation to behold who God is with awe, worship, and deeper faith.',
@@ -89,7 +89,7 @@ export const bookSnippetCards = [
     key: 'attributes-of-god',
   },
   {
-    label: 'Book Preview',
+    label: 'Coming Soon',
     title: 'EXCHANGE',
     description:
       'A devotional tool for replacing deception with truth, shame with grace, fear with faith, and bondage with freedom.',
@@ -98,7 +98,7 @@ export const bookSnippetCards = [
     key: 'exchange',
   },
   {
-    label: 'Book Preview',
+    label: 'Coming Soon',
     title: 'Called to Be Warriors, Leaders, and Champions',
     description:
       'A Christ-centered devotional for breaking bondage to pornography and other sins.',
@@ -263,8 +263,6 @@ export const homeContent = {
   },
   aboutPreview: {
     title: 'Generations transformed by Jesus.',
-    description:
-      'Light Overcomes exists to help people know and follow Jesus, grow in faith, and be equipped to change the world with His love and truth.',
     label: 'Learn More About Us',
     path: '/about',
   },
@@ -293,31 +291,19 @@ export const aboutContent = {
     },
   ],
   investing: {
-    title: 'Investing in Kingdom',
+    title: 'Invest in the Kingdom',
     description:
-      'Invest in growth and witness by purchasing life-changing products. At Light Overcomes, we want to raise as much as possible to help light overcome darkness everywhere.',
-    allocationIntro:
-      '90% of profit will go toward three Kingdom purposes. The other 10% will go to groups, primarily youth groups, that help share Light Overcomes materials with other churches.',
-    allocations: [
-      '90% toward homelessness and poverty support, the next generation, and missions',
-      '10% toward groups helping share Light Overcomes materials with other churches',
-    ],
+      'Your purchases and promotion of our products will help us as we donate 100% of profits to:',
   },
   kingdomPurposes: [
     {
-      title: 'Helping People Out of Homelessness and Poverty',
-      description:
-        'Light Overcomes wants to help the least of these find healing and hope by joining what God is already doing and supporting programs that help people out of homelessness and poverty. Matthew 25.',
+      title: '1/3 Helping People out of Homelessness and Poverty in Jesus\' Name',
     },
     {
-      title: 'Investing in the Next Generation',
-      description:
-        'Equipping and raising leaders in an amazing generation of youth.',
+      title: '1/3 Investing in ministries that share Jesus with the next generation',
     },
     {
-      title: 'Missions',
-      description:
-        'Sharing the Gospel with all people everywhere.',
+      title: '1/3 Missions and ministries that share the Good News of Jesus locally and worldwide',
     },
   ],
   joinTeam: {
@@ -335,6 +321,7 @@ export const aboutContent = {
       'Administration / project management',
     ],
     cta: 'Join the Team',
+    contactHref: 'mailto:briankruis@lightovercomes.com',
   },
   coreBeliefs: [
     {
@@ -392,29 +379,25 @@ export const aboutContent = {
     {
       title: 'Christian Values',
       description:
-        'A values library that connects everyday character, decisions, and relationships to a Christian lens.',
+        'Every believer deserves to know and share basic Christian core values that help bring freedom in all areas of life.',
       path: '/christian-values',
     },
     {
       title: 'Witness Cards',
       description:
-        'Visual cards designed to help begin clear, Gospel-centered conversations.',
+        'These cards are ways to connect people we meet in everyday life to the Gospel of Jesus Christ!',
       path: '/witness-cards',
     },
     {
       title: 'Resources',
       description:
-        'The central place for current tools and future Light Overcomes materials.',
+        'Find freedom, victory, and a deeper relationship with God! Check out our resources.',
       path: '/resources',
     },
   ],
   comingSoon: [
-    'Digital Witness Cards',
-    'Printable Resources',
-    'Teaching Videos',
     'Fresh Encounters with God: Learning from God and with God about God’s Attributes.',
-    'Devotional Tools',
-    'Mobile App Concepts',
+    'Group or family Christian growth games and activity cards.',
   ],
   externalResources: [
     {
@@ -449,8 +432,10 @@ export const aboutContent = {
 
 export const christianValuesIntro = {
   eyebrow: 'Christian Values',
-  title: 'Values Library',
+  title: 'Christian Life Values',
   description:
+    'These strong biblical values in every area of life will transform our lives as we follow God’s Word.',
+  organizationDescription:
     'These values are organized by category to help people explore practical faith, character, and daily life through a biblical lens.',
 }
 

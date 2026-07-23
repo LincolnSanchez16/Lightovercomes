@@ -1,3 +1,4 @@
+import { Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import heroImage from '../assets/images/LOnewgreen.jpeg'
@@ -137,7 +138,7 @@ function WitnessVideoCard({
         )}
 
         <span className="witness-video-play" aria-hidden="true">
-          Play
+          <Play fill="currentColor" />
         </span>
       </div>
     </button>

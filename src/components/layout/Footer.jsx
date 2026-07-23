@@ -10,6 +10,11 @@ function Footer() {
         <Link className="footer-link" to="/privacy">
           Privacy Policy
         </Link>
+        <span
+          aria-hidden="true"
+          className="footer-signup-slot"
+          id="email-signup-footer-slot"
+        />
       </nav>
     </footer>
   )

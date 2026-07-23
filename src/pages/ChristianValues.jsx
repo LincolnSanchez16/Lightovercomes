@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import panoBibleImage from '../assets/images/panobible.jpeg'
 import {
   christianValueCategories,
@@ -15,7 +16,10 @@ function ChristianValues() {
   const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [isCategorySwitching, setIsCategorySwitching] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  const [canScrollCategoriesLeft, setCanScrollCategoriesLeft] = useState(false)
+  const [canScrollCategoriesRight, setCanScrollCategoriesRight] = useState(true)
   const cardsRef = useRef([])
+  const categoryNavRef = useRef(null)
   const switchTimerRef = useRef(null)
   const normalizedSearchQuery = searchQuery.trim().toLowerCase()
   const isSearching = normalizedSearchQuery.length > 0
@@ -31,6 +35,29 @@ function ChristianValues() {
     value.title.toLowerCase().includes(normalizedSearchQuery),
   )
   const displayedValues = isSearching ? searchResults : activeValues
+
+  useEffect(() => {
+    const categoryNav = categoryNavRef.current
+
+    if (!categoryNav) {
+      return undefined
+    }
+
+    const updateScrollControls = () => {
+      const maxScrollLeft = categoryNav.scrollWidth - categoryNav.clientWidth
+      setCanScrollCategoriesLeft(categoryNav.scrollLeft > 8)
+      setCanScrollCategoriesRight(categoryNav.scrollLeft < maxScrollLeft - 8)
+    }
+
+    updateScrollControls()
+    categoryNav.addEventListener('scroll', updateScrollControls, { passive: true })
+    window.addEventListener('resize', updateScrollControls)
+
+    return () => {
+      categoryNav.removeEventListener('scroll', updateScrollControls)
+      window.removeEventListener('resize', updateScrollControls)
+    }
+  }, [])
 
   useEffect(() => {
     return () => {
@@ -111,6 +138,19 @@ function ChristianValues() {
     }, CATEGORY_SWITCH_MS)
   }
 
+  const scrollCategories = (direction) => {
+    const categoryNav = categoryNavRef.current
+
+    if (!categoryNav) {
+      return
+    }
+
+    categoryNav.scrollBy({
+      left: direction * Math.max(categoryNav.clientWidth * 0.72, 280),
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <>
       <div className="values-banner">
@@ -123,13 +163,34 @@ function ChristianValues() {
         <div className="values-intro values-intro-hero">
           <span className="eyebrow">{christianValuesIntro.eyebrow}</span>
           <h1>{christianValuesIntro.title}</h1>
-          <p>{christianValuesIntro.description}</p>
         </div>
       </div>
 
       <section className="values-page">
         <nav className="values-category-nav" aria-label="Christian values categories">
-          <div className="values-category-nav-track">
+          <div className="values-category-nav-header">
+            <span>Choose an area</span>
+            <div className="values-category-nav-controls" aria-label="Browse value categories">
+              <button
+                type="button"
+                aria-label="Previous value categories"
+                disabled={!canScrollCategoriesLeft}
+                onClick={() => scrollCategories(-1)}
+              >
+                <ChevronLeft aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next value categories"
+                disabled={!canScrollCategoriesRight}
+                onClick={() => scrollCategories(1)}
+              >
+                <ChevronRight aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+
+          <div className="values-category-nav-track" ref={categoryNavRef}>
             <div className="values-search">
               <label className="values-search-label" htmlFor="values-search-input">
                 Search Values

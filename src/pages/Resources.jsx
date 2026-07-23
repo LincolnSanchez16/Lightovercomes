@@ -90,10 +90,8 @@ function Resources() {
 
       <section className="book-snippets-section" aria-labelledby="book-snippets-title">
         <div className="resources-section-heading">
-          <span className="eyebrow">Book Previews</span>
-          <h2 id="book-snippets-title" className="visually-hidden">
-            Book previews
-          </h2>
+          <span className="eyebrow">Coming Soon</span>
+          <h2 id="book-snippets-title">Book Previews</h2>
         </div>
 
         <div className="book-snippet-grid">
@@ -103,9 +101,10 @@ function Resources() {
               data-resource={card.key}
               key={card.path}
               to={card.path}
-              aria-label={`${card.title}. Click me.`}
+              aria-label={`${card.title}. View preview.`}
             >
               <div className="book-snippet-image-wrap">
+                <span className="book-snippet-status">{card.label}</span>
                 <img
                   className="book-snippet-image"
                   src={snippetImages[card.key]}
@@ -113,7 +112,7 @@ function Resources() {
                   loading="lazy"
                   decoding="async"
                 />
-                <span className="book-snippet-hover">Click me</span>
+                <span className="book-snippet-hover">View preview</span>
               </div>
             </Link>
           ))}

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import aboutHomeImage from '../assets/images/about-forest.jpeg'
 import heroImage from '../assets/images/LOnewgreen.jpeg'
+import EmailSignupForm from '../components/email/EmailSignupForm'
 import { homeContent } from '../data/siteContent'
+import { isEmailSignupVisible } from '../lib/emailSubscribers'
 
 function Home() {
   return (
@@ -35,29 +38,59 @@ function Home() {
         <div className="home-section-inner">
           <span className="eyebrow">Mission</span>
           <h2>{homeContent.missionTeaser}</h2>
-          <p>{homeContent.visionTeaser}</p>
+          <p className="home-vision-statement">{homeContent.visionTeaser}</p>
         </div>
       </section>
 
-      <section className="home-section home-section-narrow">
-        <div className="home-section-inner">
-          <span className="eyebrow">Resources</span>
-          <h2>{homeContent.resourcesCta.title}</h2>
-          <p>{homeContent.resourcesCta.description}</p>
-          <Link className="inline-page-button" to={homeContent.resourcesCta.path}>
-            {homeContent.resourcesCta.label}
-          </Link>
+      {isEmailSignupVisible ? (
+        <section className="home-connect-section" aria-labelledby="home-connect-title">
+          <div className="home-connect-media" aria-hidden="true">
+            <img src={heroImage} alt="" />
+            <div className="home-connect-overlay" />
+          </div>
+          <div className="home-connect-inner">
+            <div className="home-connect-copy">
+              <span className="eyebrow">Stay Connected</span>
+              <h2 id="home-connect-title">Carry the light forward.</h2>
+              <p>
+                Receive new resources, ministry updates, and practical ways to know, live, and
+                share the hope of Jesus.
+              </p>
+            </div>
+            <EmailSignupForm pagePath="/" source="home-inline" />
+          </div>
+        </section>
+      ) : null}
+
+      <section className="home-section home-feature-section home-feature-resources">
+        <div className="home-feature-inner">
+          <div className="home-feature-copy">
+            <span className="eyebrow">Resources</span>
+            <h2>{homeContent.resourcesCta.title}</h2>
+          </div>
+          <div className="home-feature-action">
+            <Link className="inline-page-button" to={homeContent.resourcesCta.path}>
+              {homeContent.resourcesCta.label}
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="home-section home-section-narrow">
-        <div className="home-section-inner">
-          <span className="eyebrow">About</span>
-          <h2>{homeContent.aboutPreview.title}</h2>
-          <p>{homeContent.aboutPreview.description}</p>
-          <Link className="inline-page-button" to={homeContent.aboutPreview.path}>
-            {homeContent.aboutPreview.label}
-          </Link>
+      <section className="home-section home-feature-section home-feature-about">
+        <div className="home-feature-media" aria-hidden="true">
+          <img src={aboutHomeImage} alt="" />
+          <div className="home-feature-overlay" />
+        </div>
+        <div className="home-feature-inner">
+          <div className="home-feature-copy">
+            <span className="eyebrow">About</span>
+            <h2>{homeContent.aboutPreview.title}</h2>
+          </div>
+          <div className="home-feature-action">
+            <Link className="inline-page-button" to={homeContent.aboutPreview.path}>
+              {homeContent.aboutPreview.label}
+            </Link>
+          </div>
         </div>
       </section>
     </>

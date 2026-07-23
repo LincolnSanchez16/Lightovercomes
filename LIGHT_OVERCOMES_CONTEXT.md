@@ -1,6 +1,6 @@
 # Light Overcomes Project Context
 
-Last updated: 2026-07-02
+Last updated: 2026-07-22
 
 Use this file as the clean handoff context for future Light Overcomes work. Do not mix this project with LockIn Stack. Light Overcomes is a ministry / Gospel resource website, not a SaaS dashboard.
 
@@ -43,6 +43,10 @@ Important public assets:
 - Witness videos:
   - `public/videos/witness-cards/*`
 
+Important bundled Home imagery:
+
+- About forest background: `src/assets/images/about-forest.jpeg`
+
 ## Current Pages
 
 - `/` home / landing page.
@@ -82,6 +86,13 @@ Good design moves:
 - calm cream / green / natural tones
 - clear route hierarchy
 - simple hover states like `Click me`
+- occasional full-width, image-backed sections that shift from the light page surface into deep green
+- white editorial text over a softened, darkened real image for important invitations such as Stay Connected
+- using those darker image bands sparingly to create rhythm and priority between lighter content sections
+
+The Home page's Stay Connected section is the reference for this light-to-dark visual shift. It should feel immersive and intentional without turning every page section into a hero. Preserve enough contrast for the signup form and keep the transition back into light content clean.
+
+On the Home page, lighter sections can continue that rhythm through asymmetric desktop layouts. Alternate the heading and action across the two columns rather than centering every section. On mobile, always collapse these sections into centered, single-column content with the heading before the action.
 
 Avoid:
 
@@ -217,4 +228,3 @@ Store copy should feel practical and ministry-minded, not salesy.
 - User wants the browser tab title to be `Light Overcomes`.
 - User wants the new logo used for favicon and navbar.
 - User wants witness card images updated everywhere the witness cards themselves are shown.
-

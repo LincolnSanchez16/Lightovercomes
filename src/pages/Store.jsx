@@ -5,18 +5,22 @@ function Store() {
   return (
     <section className="store-page">
       <div className="store-intro">
-        <span className="eyebrow">{storeContent.eyebrow}</span>
-        <h1>{storeContent.title}</h1>
-        <p>{storeContent.description}</p>
-        <a
-          className="store-primary-link"
-          href={shopStoreUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {storeContent.cta}
-          <span aria-hidden="true">→</span>
-        </a>
+        <div className="store-intro-copy">
+          <span className="eyebrow">{storeContent.eyebrow}</span>
+          <h1>{storeContent.title}</h1>
+        </div>
+        <div className="store-intro-action">
+          <p>{storeContent.description}</p>
+          <a
+            className="store-primary-link"
+            href={shopStoreUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {storeContent.cta}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
 
       <div className="store-card-grid" aria-label="Witness cards available in the store">
