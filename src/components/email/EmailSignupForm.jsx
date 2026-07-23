@@ -54,6 +54,7 @@ function EmailSignupForm({
           email: normalizedEmail,
           source,
           pagePath,
+          website,
         })
       } else if (!isEmailSignupPreview) {
         throw new Error()

@@ -14,12 +14,12 @@ export const isEmailSignupVisible = isEmailSignupEnabled || isEmailSignupPreview
 export const emailConsentCopy =
   'I agree to receive email updates and new resources from Light Overcomes. I can unsubscribe at any time.'
 
-export async function subscribeToUpdates({ name, email, source, pagePath }) {
+export async function subscribeToUpdates({ name, email, source, pagePath, website = '' }) {
   if (!isEmailSignupConfigured) {
     throw new Error()
   }
 
-  const response = await fetch(`${supabaseUrl}/rest/v1/rpc/subscribe_to_updates`, {
+  const response = await fetch(`${supabaseUrl}/functions/v1/subscribe-to-updates`, {
     method: 'POST',
     headers: {
       apikey: supabaseAnonKey,
@@ -32,6 +32,7 @@ export async function subscribeToUpdates({ name, email, source, pagePath }) {
       signup_source: source,
       signup_page: pagePath,
       consent_copy: emailConsentCopy,
+      website,
     }),
   })
 
