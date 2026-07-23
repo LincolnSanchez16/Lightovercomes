@@ -68,7 +68,7 @@ export const resourceCards = [
   },
 ]
 
-export const shopStoreUrl = 'https://lightovercomes.printify.me/'
+export const shopStoreUrl = 'https://light-overcomes.printify.me/'
 
 export const storeContent = {
   eyebrow: 'Store',
