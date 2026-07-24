@@ -5,13 +5,11 @@ import { shopStoreUrl, storeContent } from '../data/siteContent'
 function Store() {
   return (
     <section className="store-page">
-      <div className="store-intro">
-        <div className="store-intro-copy">
-          <span className="eyebrow">{storeContent.eyebrow}</span>
-          <h1>{storeContent.title}</h1>
-        </div>
-        <div className="store-intro-action">
-          <p>{storeContent.description}</p>
+      <header className="store-intro">
+        <span className="eyebrow">{storeContent.eyebrow}</span>
+        <h1>{storeContent.title}</h1>
+        <p>{storeContent.description}</p>
+        <div className="store-intro-actions">
           <a
             className="store-primary-link"
             href={shopStoreUrl}
@@ -21,10 +19,9 @@ function Store() {
             {storeContent.cta}
             <span aria-hidden="true">→</span>
           </a>
+          <WitnessCardDownload buttonOnly />
         </div>
-      </div>
-
-      <WitnessCardDownload />
+      </header>
 
       <div className="store-card-grid" aria-label="Witness cards available in the store">
         {witnessVideoCards.map((card) => {

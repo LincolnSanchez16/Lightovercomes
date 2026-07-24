@@ -72,10 +72,10 @@ export const shopStoreUrl = 'https://light-overcomes.printify.me/'
 
 export const storeContent = {
   eyebrow: 'Store',
-  title: 'Share the Hope of Jesus - EVERYWHERE you go!',
+  title: 'Share the hope of Jesus everywhere you go.',
   description:
-    'Get a set of cards you can hand to people to share Jesus!',
-  cta: 'Open Store',
+    'Order printed witness cards delivered to you, or download the complete set to print at home.',
+  cta: 'Order Printed Cards',
 }
 
 export const bookSnippetCards = [

@@ -146,7 +146,7 @@ async function createCardDownload(format, resolution) {
   )
 }
 
-function WitnessCardDownload() {
+function WitnessCardDownload({ buttonOnly = false }) {
   const [isOpen, setIsOpen] = useState(false)
   const [format, setFormat] = useState('pdf')
   const [resolutionId, setResolutionId] = useState('print')
@@ -202,20 +202,27 @@ function WitnessCardDownload() {
 
   return (
     <>
-      <section className="witness-download-callout" aria-labelledby="witness-download-title">
-        <div className="witness-download-icon" aria-hidden="true">
-          <Printer size={22} strokeWidth={1.8} />
-        </div>
-        <div className="witness-download-copy">
-          <span className="eyebrow">Print at home</span>
-          <h2 id="witness-download-title">Have your own printer?</h2>
-          <p>Download the complete set in the format and resolution you need.</p>
-        </div>
-        <button className="witness-download-open" type="button" onClick={open}>
-          Choose download
+      {buttonOnly ? (
+        <button className="store-download-link" type="button" onClick={open}>
+          Download cards
           <Download size={17} aria-hidden="true" />
         </button>
-      </section>
+      ) : (
+        <section className="witness-download-callout" aria-labelledby="witness-download-title">
+          <div className="witness-download-icon" aria-hidden="true">
+            <Printer size={22} strokeWidth={1.8} />
+          </div>
+          <div className="witness-download-copy">
+            <span className="eyebrow">Print at home</span>
+            <h2 id="witness-download-title">Have your own printer?</h2>
+            <p>Download the complete set in the format and resolution you need.</p>
+          </div>
+          <button className="witness-download-open" type="button" onClick={open}>
+            Choose download
+            <Download size={17} aria-hidden="true" />
+          </button>
+        </section>
+      )}
 
       {isOpen ? (
         <div className="witness-download-backdrop" onClick={close}>

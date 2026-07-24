@@ -460,13 +460,9 @@ button:focus-visible {
 }
 
 .store-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
-  gap: clamp(2.5rem, 7vw, 6.5rem);
-  width: 100%;
-  align-items: end;
-  margin-bottom: 3.5rem;
-  text-align: left;
+  width: min(100%, 58rem);
+  margin-bottom: clamp(3.25rem, 7vw, 5.5rem);
+  text-align: center;
 }
 
 .store-intro h1,
@@ -479,9 +475,10 @@ button:focus-visible {
 }
 
 .store-intro h1 {
-  max-width: 15ch;
-  margin: 0.85rem 0 0;
-  letter-spacing: -0.045em;
+  max-width: 17ch;
+  margin: 0.85rem auto 0;
+  font-size: clamp(2.75rem, 5.25vw, 4.35rem);
+  letter-spacing: 0;
 }
 
 .exchange-hero h1 {
@@ -512,29 +509,38 @@ button:focus-visible {
 }
 
 .store-intro p {
-  max-width: 40rem;
-  margin: 0 0 1.45rem;
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
   color: var(--color-muted);
-  font-size: 1.02rem;
-  line-height: 1.8;
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.65;
 }
 
-.store-intro-action {
-  padding-bottom: 0.35rem;
+.store-intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
 }
 
-.store-primary-link {
+.store-primary-link,
+.store-download-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 3.15rem;
-  padding: 0 1.25rem;
+  min-width: 12.75rem;
+  min-height: 3.25rem;
+  padding: 0.75rem 1.3rem;
+  border: 1px solid var(--color-accent);
   background: var(--color-accent);
   color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
   font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   text-decoration: none;
   text-transform: uppercase;
   transition:
@@ -543,9 +549,17 @@ button:focus-visible {
     box-shadow 160ms ease;
 }
 
+.store-download-link {
+  background: transparent;
+  color: var(--color-accent-dark);
+}
+
 .store-primary-link:hover,
-.store-primary-link:focus-visible {
+.store-primary-link:focus-visible,
+.store-download-link:hover,
+.store-download-link:focus-visible {
   background: var(--color-accent-dark);
+  color: #ffffff;
   box-shadow: 0 12px 30px rgba(53, 104, 72, 0.18);
   transform: translateY(-2px);
 }
@@ -4192,8 +4206,6 @@ button:focus-visible {
   }
 
   .store-intro {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
     text-align: center;
   }
 
@@ -4206,6 +4218,17 @@ button:focus-visible {
   .store-intro h1,
   .attributes-hero h1 {
     font-size: clamp(2.15rem, 9vw, 3.35rem);
+  }
+
+  .store-intro-actions {
+    width: min(100%, 20rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .store-primary-link,
+  .store-download-link {
+    width: 100%;
   }
 
   .exchange-devotion-grid {
