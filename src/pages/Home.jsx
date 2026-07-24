@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import aboutHomeImage from '../assets/images/about-forest.jpeg'
+import connectImage from '../assets/images/lightochero.jpeg'
 import heroImage from '../assets/images/LOnewgreen.jpeg'
 import EmailSignupForm from '../components/email/EmailSignupForm'
 import { homeContent } from '../data/siteContent'
@@ -45,7 +46,7 @@ function Home() {
       {isEmailSignupVisible ? (
         <section className="home-connect-section" aria-labelledby="home-connect-title">
           <div className="home-connect-media" aria-hidden="true">
-            <img src={heroImage} alt="" />
+            <img src={connectImage} alt="" />
             <div className="home-connect-overlay" />
           </div>
           <div className="home-connect-inner">

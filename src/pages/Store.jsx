@@ -1,3 +1,4 @@
+import WitnessCardDownload from '../components/witness/WitnessCardDownload'
 import { witnessVideoCards } from '../data/witnessCards'
 import { shopStoreUrl, storeContent } from '../data/siteContent'
 
@@ -22,6 +23,8 @@ function Store() {
           </a>
         </div>
       </div>
+
+      <WitnessCardDownload />
 
       <div className="store-card-grid" aria-label="Witness cards available in the store">
         {witnessVideoCards.map((card) => {

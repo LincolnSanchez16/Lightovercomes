@@ -5,7 +5,7 @@ import EmailSignupPrompt from '../email/EmailSignupPrompt'
 function MainLayout({ navbar, footer }) {
   const { pathname } = useLocation()
   const isHomeRoute = pathname === '/' || pathname === '/home'
-  const hasFlushFooter = isHomeRoute || pathname === '/about'
+  const hasFlushFooter = isHomeRoute || pathname === '/about' || pathname === '/resources'
   const hasValuesHero = pathname === '/christian-values'
   const mainClassName = [
     'site-main',

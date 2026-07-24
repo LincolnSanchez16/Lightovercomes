@@ -550,6 +550,247 @@ button:focus-visible {
   transform: translateY(-2px);
 }
 
+.witness-download-callout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto 3rem;
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.witness-download-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  color: var(--color-accent-dark);
+}
+
+.witness-download-copy h2 {
+  margin-top: 0.4rem;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.witness-download-copy p {
+  margin-top: 0.35rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.witness-download-open,
+.witness-download-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3.1rem;
+  padding: 0.75rem 1.15rem;
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.witness-download-open:hover,
+.witness-download-open:focus-visible,
+.witness-download-submit:hover,
+.witness-download-submit:focus-visible {
+  border-color: var(--color-accent-dark);
+  background: var(--color-accent-dark);
+  color: #ffffff;
+}
+
+.witness-download-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(20, 42, 28, 0.42);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  animation: emailBackdropIn 180ms ease-out both;
+}
+
+.witness-download-modal {
+  width: min(100%, 35rem);
+  max-height: calc(100svh - 2.5rem);
+  overflow-y: auto;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  box-shadow: 0 26px 70px rgba(14, 34, 21, 0.3);
+  animation: emailPromptIn 220ms ease-out both;
+}
+
+.witness-download-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.witness-download-modal-header h2 {
+  margin-top: 0.45rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.witness-download-close {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-accent-dark);
+  cursor: pointer;
+}
+
+.witness-download-close:hover,
+.witness-download-close:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-card-hover-bg);
+}
+
+.witness-download-fieldset {
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+}
+
+.witness-download-fieldset legend {
+  margin-bottom: 0.65rem;
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.witness-download-segments {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.witness-download-segments label,
+.witness-download-resolution-list label {
+  position: relative;
+  cursor: pointer;
+}
+
+.witness-download-segments input,
+.witness-download-resolution-list input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.witness-download-segments span {
+  display: grid;
+  min-height: 2.9rem;
+  place-items: center;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-control-bg);
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.witness-download-segments label + label span {
+  border-left: 0;
+}
+
+.witness-download-segments input:checked + span {
+  background: var(--color-accent-dark);
+  color: #ffffff;
+}
+
+.witness-download-segments input:focus-visible + span,
+.witness-download-resolution-list input:focus-visible + span {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.witness-download-resolution-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.witness-download-resolution-list label > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-control-bg);
+  color: var(--color-text);
+}
+
+.witness-download-resolution-list input:checked + span {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+.witness-download-resolution-list strong {
+  font-size: 0.92rem;
+}
+
+.witness-download-resolution-list small {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  text-align: right;
+}
+
+.witness-download-note {
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.witness-download-error {
+  margin-top: 0.8rem;
+  color: #8a2f2f;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.witness-download-submit {
+  width: 100%;
+  margin-top: 1.25rem;
+}
+
+.witness-download-submit:disabled,
+.witness-download-close:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
 .store-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3461,13 +3702,49 @@ button:focus-visible {
 }
 
 .resources-email-signup {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  min-height: 30rem;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+.resources-email-signup-media,
+.resources-email-signup-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.resources-email-signup-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.resources-email-signup-overlay {
+  background: rgba(8, 28, 18, 0.76);
+}
+
+.resources-email-signup-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(20rem, 1.1fr);
   gap: clamp(2rem, 5vw, 5rem);
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding: clamp(2rem, 5vw, 3.5rem) 0;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  width: min(1020px, calc(100vw - 64px));
+  align-items: center;
+  min-height: 30rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+  color: #ffffff;
+}
+
+.resources-email-signup .eyebrow {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .resources-email-signup h2 {
@@ -3478,6 +3755,7 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.06;
+  color: #ffffff;
 }
 
 .resources-email-signup-form > p,
@@ -3487,8 +3765,23 @@ button:focus-visible {
   line-height: 1.7;
 }
 
+.resources-email-signup-form > p,
+.resources-email-signup .email-signup-consent,
+.resources-email-signup .email-signup-success {
+  color: rgba(255, 255, 255, 0.84);
+}
+
 .resources-email-signup .email-signup-form {
   max-width: 35rem;
+}
+
+.resources-email-signup .email-signup-input {
+  border-color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.resources-email-signup .email-signup-consent a {
+  color: #ffffff;
 }
 
 .about-email-signup {
@@ -3928,6 +4221,42 @@ button:focus-visible {
     width: min(100%, 22rem);
   }
 
+  .witness-download-callout {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1rem;
+    margin-bottom: 2.25rem;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  .witness-download-copy p {
+    max-width: 22rem;
+  }
+
+  .witness-download-open {
+    width: min(100%, 20rem);
+  }
+
+  .witness-download-backdrop {
+    padding: 0.75rem;
+  }
+
+  .witness-download-modal {
+    max-height: calc(100svh - 1.5rem);
+    padding: 1.15rem;
+  }
+
+  .witness-download-resolution-list label > span {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .witness-download-resolution-list small {
+    text-align: left;
+  }
+
   .store-card-footer {
     gap: 1rem;
     min-height: 0;
@@ -4346,9 +4675,23 @@ button:focus-visible {
   }
 
   .resources-email-signup {
-    grid-template-columns: 1fr;
-    gap: 1.35rem;
+    min-height: 0;
     margin-top: 4rem;
+  }
+
+  .resources-email-signup-inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: min(100%, calc(100vw - 32px));
+    min-height: 28rem;
+    padding: 3.75rem 0;
+    text-align: center;
+  }
+
+  .resources-email-signup h2,
+  .resources-email-signup-form > p {
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .about-email-signup {
@@ -4380,7 +4723,9 @@ button:focus-visible {
 
   .email-signup-prompt,
   .email-signup-launcher,
-  .email-signup-prompt-backdrop {
+  .email-signup-prompt-backdrop,
+  .witness-download-modal,
+  .witness-download-backdrop {
     animation: none;
   }
 }

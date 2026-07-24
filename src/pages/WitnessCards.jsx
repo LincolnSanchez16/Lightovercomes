@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import WitnessCardDownload from '../components/witness/WitnessCardDownload'
 import { witnessCards, witnessCardsIntro } from '../data/witnessCards'
 
 function WitnessCards() {
@@ -60,6 +61,8 @@ function WitnessCards() {
           <h1>{witnessCardsIntro.title}</h1>
           <p>{witnessCardsIntro.description}</p>
         </div>
+
+        <WitnessCardDownload />
 
         <div className="witness-grid" aria-label="Witness Cards">
           {witnessCards.map((card, index) => (

@@ -1,61 +1,56 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import {
-  isEmailSignupPreview,
   isEmailSignupVisible,
 } from '../../lib/emailSubscribers'
 import EmailSignupForm from './EmailSignupForm'
 
-const STORAGE_KEY = 'light-overcomes-email-prompt'
-const SUBSCRIBED_FOR_MS = 365 * 24 * 60 * 60 * 1000
-const SCROLL_REVEAL_RATIO = 0.4
 const EXCLUDED_PATHS = new Set(['/privacy', '/privacy-policy', '/terms', '/tos'])
-
-function readHiddenUntil() {
-  try {
-    return Number(window.localStorage.getItem(STORAGE_KEY)) || 0
-  } catch {
-    return 0
-  }
-}
-
-function rememberPromptChoice(durationMs) {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, String(Date.now() + durationMs))
-  } catch {
-    // The prompt can still be dismissed for the current page if storage is unavailable.
-  }
-}
 
 function EmailSignupPrompt() {
   const { pathname } = useLocation()
-  const [isVisible, setIsVisible] = useState(isEmailSignupPreview)
   const [isExpanded, setIsExpanded] = useState(false)
   const [isFooterDocked, setIsFooterDocked] = useState(false)
+  const [inlineSignupVisiblePath, setInlineSignupVisiblePath] = useState(null)
   const launcherRef = useRef(null)
   const isPromptAvailable =
-    isEmailSignupVisible && isVisible && !EXCLUDED_PATHS.has(pathname)
+    isEmailSignupVisible && !EXCLUDED_PATHS.has(pathname)
+  const isInlineSignupVisible = inlineSignupVisiblePath === pathname
+  const isLauncherAvailable = isPromptAvailable && !isInlineSignupVisible
 
   useEffect(() => {
-    if (!isEmailSignupVisible || isEmailSignupPreview || readHiddenUntil() > Date.now()) {
+    if (!isPromptAvailable) {
       return undefined
     }
 
-    const handleScroll = () => {
-      const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollRatio = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0
+    const inlineSignupSections = Array.from(
+      document.querySelectorAll(
+        '.home-connect-section, .resources-email-signup, .about-email-signup',
+      ),
+    )
 
-      if (scrollRatio >= SCROLL_REVEAL_RATIO) {
-        setIsVisible(true)
-        window.removeEventListener('scroll', handleScroll)
-      }
+    if (inlineSignupSections.length === 0) {
+      return undefined
     }
 
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    const visibility = new Map()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => visibility.set(entry.target, entry.isIntersecting))
+        setInlineSignupVisiblePath(
+          Array.from(visibility.values()).some(Boolean) ? pathname : null,
+        )
+      },
+      { threshold: 0.08 },
+    )
 
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    inlineSignupSections.forEach((section) => {
+      visibility.set(section, false)
+      observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [isPromptAvailable, pathname])
 
   useEffect(() => {
     if (!isExpanded) {
@@ -80,13 +75,13 @@ function EmailSignupPrompt() {
 
   useEffect(() => {
     const root = document.documentElement
-    root.classList.toggle('has-email-signup-launcher', isPromptAvailable && !isExpanded)
+    root.classList.toggle('has-email-signup-launcher', isLauncherAvailable && !isExpanded)
 
     return () => root.classList.remove('has-email-signup-launcher')
-  }, [isExpanded, isPromptAvailable])
+  }, [isExpanded, isLauncherAvailable])
 
   useEffect(() => {
-    if (!isPromptAvailable || isExpanded) {
+    if (!isLauncherAvailable || isExpanded) {
       return undefined
     }
 
@@ -132,7 +127,7 @@ function EmailSignupPrompt() {
       window.removeEventListener('scroll', scheduleLauncherUpdate)
       window.removeEventListener('resize', scheduleLauncherUpdate)
     }
-  }, [isExpanded, isPromptAvailable, pathname])
+  }, [isExpanded, isLauncherAvailable, pathname])
 
   if (!isPromptAvailable) {
     return null
@@ -140,6 +135,10 @@ function EmailSignupPrompt() {
 
   const close = () => {
     setIsExpanded(false)
+  }
+
+  if (!isExpanded && !isLauncherAvailable) {
+    return null
   }
 
   if (!isExpanded) {
@@ -195,7 +194,6 @@ function EmailSignupPrompt() {
         <EmailSignupForm
           pagePath={pathname}
           source="scroll-invitation"
-          onSuccess={() => rememberPromptChoice(SUBSCRIBED_FOR_MS)}
         />
       </aside>
     </div>
