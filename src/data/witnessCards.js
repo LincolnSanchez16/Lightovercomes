@@ -57,12 +57,6 @@ export const witnessVideoIntro = {
     'Tap a witness card to play a short message about that topic.',
 }
 
-const endCta = (triggerAfterSeconds) => ({
-  label: 'Learn More',
-  path: '/resources',
-  triggerAfterSeconds,
-})
-
 export const witnessVideoCards = [
   {
     id: 'god-love-you',
@@ -71,7 +65,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/how-much-does-god-love-you-and-me.png',
     coverThumb: '/images/witness-cards/thumbs/how-much-does-god-love-you-and-me.png',
     videoSrc: '/videos/witness-cards/how-much-does-god-love-you-and-me.mp4',
-    cta: endCta(45.5),
     tone: 'green',
   },
   {
@@ -81,7 +74,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/everyone-needs-lasting-hope.png',
     coverThumb: '/images/witness-cards/thumbs/everyone-needs-lasting-hope.png',
     videoSrc: '/videos/witness-cards/everyone-needs-lasting-hope-dont-miss-out.mp4',
-    cta: endCta(48),
     tone: 'deep-red',
   },
   {
@@ -91,7 +83,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/hope-is-not-lost-jesus-is-alive.png',
     coverThumb: '/images/witness-cards/thumbs/hope-is-not-lost-jesus-is-alive.png',
     videoSrc: '/videos/witness-cards/hope-is-not-lost.mp4',
-    cta: endCta(50.2),
     tone: 'blue',
   },
   {
@@ -101,7 +92,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/do-you-know-the-one-who-holds-your-tomorrow.png',
     coverThumb: '/images/witness-cards/thumbs/do-you-know-the-one-who-holds-your-tomorrow.png',
     videoSrc: '/videos/witness-cards/do-you-know-the-one-who-holds-tomorrow.mp4',
-    cta: endCta(49.9),
     tone: 'light-green',
   },
   {
@@ -111,7 +101,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/eternal-life-is-a-gift-will-you-receive-it.png',
     coverThumb: '/images/witness-cards/thumbs/eternal-life-is-a-gift-will-you-receive-it.png',
     videoSrc: '/videos/witness-cards/eternal-life-is-a-gift-will-you-receive-it.mp4',
-    cta: endCta(137),
     tone: 'purple',
   },
   {
@@ -121,7 +110,6 @@ export const witnessVideoCards = [
     coverImage: '/images/witness-cards/full/tired-of-a-world-full-of-hurt.png',
     coverThumb: '/images/witness-cards/thumbs/tired-of-a-world-full-of-hurt.png',
     videoSrc: '/videos/witness-cards/tired-of-a-world-full-of-hurt.mp4',
-    cta: endCta(43.4),
     tone: 'red',
   },
 ]

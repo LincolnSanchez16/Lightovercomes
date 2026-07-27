@@ -1,7 +1,5 @@
 import { Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import heroImage from '../assets/images/LOnewgreen.jpeg'
 import { witnessVideoCards, witnessVideoIntro } from '../data/witnessCards'
 
 function WitnessVideos() {
@@ -91,6 +89,15 @@ function WitnessVideos() {
         ))}
       </div>
 
+      <aside className="witness-video-page-cta" aria-labelledby="lasting-hope-cta-title">
+        <span className="eyebrow">Keep going</span>
+        <h2 id="lasting-hope-cta-title">Everyone needs lasting hope.</h2>
+        <p>Watch a short message about the lasting hope found in Jesus.</p>
+        <button type="button" onClick={() => setActiveCardId('lasting-hope')}>
+          Learn More
+        </button>
+      </aside>
+
       {activeCard ? (
         <WitnessVideoModal card={activeCard} onClose={() => setActiveCardId(null)} />
       ) : null}
@@ -146,138 +153,6 @@ function WitnessVideoCard({
 }
 
 function WitnessVideoModal({ card, onClose }) {
-  const [hasEnded, setHasEnded] = useState(false)
-  const watchTimerRef = useRef(null)
-  const watchedMsRef = useRef(0)
-  const lastPlaybackTimeRef = useRef(0)
-  const showEndCta = Boolean(card.cta && hasEnded)
-
-  useEffect(() => (
-    () => {
-      if (watchTimerRef.current) {
-        window.clearInterval(watchTimerRef.current)
-      }
-    }
-  ), [])
-
-  const clearWatchTimer = () => {
-    if (watchTimerRef.current) {
-      window.clearInterval(watchTimerRef.current)
-      watchTimerRef.current = null
-    }
-  }
-
-  const getCtaTriggerSecond = (video) => {
-    if (!card.cta) {
-      return null
-    }
-
-    if (Number.isFinite(card.cta.triggerAfterSeconds)) {
-      return card.cta.triggerAfterSeconds
-    }
-
-    if (video && Number.isFinite(video.duration) && video.duration > 0) {
-      return Math.max(video.duration - 0.5, 0)
-    }
-
-    return null
-  }
-
-  const showEndedState = () => {
-    clearWatchTimer()
-    setHasEnded(true)
-  }
-
-  const checkForCtaTrigger = (video) => {
-    if (!card.cta || hasEnded) {
-      return
-    }
-
-    const triggerSecond = getCtaTriggerSecond(video)
-
-    if (triggerSecond === null) {
-      return
-    }
-
-    if (
-      video.currentTime >= triggerSecond ||
-      watchedMsRef.current >= triggerSecond * 1000
-    ) {
-      showEndedState()
-    }
-  }
-
-  const startWatchTimer = (video) => {
-    if (!card.cta || hasEnded || watchTimerRef.current) {
-      return
-    }
-
-    lastPlaybackTimeRef.current = video.currentTime || 0
-
-    watchTimerRef.current = window.setInterval(() => {
-      if (video.ended) {
-        showEndedState()
-        return
-      }
-
-      if (video.paused || video.seeking || video.readyState < 2) {
-        lastPlaybackTimeRef.current = video.currentTime || 0
-        return
-      }
-
-      const currentPlaybackTime = video.currentTime || 0
-      const playbackDelta = currentPlaybackTime - lastPlaybackTimeRef.current
-
-      if (playbackDelta > 0) {
-        watchedMsRef.current += playbackDelta * 1000
-      }
-
-      lastPlaybackTimeRef.current = currentPlaybackTime
-      checkForCtaTrigger(video)
-    }, 250)
-  }
-
-  const handlePlaybackStart = (event) => {
-    const video = event.currentTarget
-
-    if (hasEnded) {
-      return
-    }
-
-    lastPlaybackTimeRef.current = video.currentTime || 0
-    startWatchTimer(video)
-    checkForCtaTrigger(video)
-  }
-
-  const handlePause = (event) => {
-    if (event.currentTarget.ended) {
-      showEndedState()
-      return
-    }
-
-    clearWatchTimer()
-  }
-
-  const handleSeeked = (event) => {
-    const video = event.currentTarget
-
-    lastPlaybackTimeRef.current = video.currentTime || 0
-    checkForCtaTrigger(video)
-
-    if (!video.paused && !hasEnded) {
-      startWatchTimer(video)
-    }
-  }
-
-  const handlePlaybackReset = (event) => {
-    const video = event.currentTarget
-    const triggerSecond = getCtaTriggerSecond(video)
-
-    if (triggerSecond === null || video.currentTime < triggerSecond - 1) {
-      setHasEnded(false)
-    }
-  }
-
   return (
     <div
       className="witness-video-modal-backdrop"
@@ -304,49 +179,9 @@ function WitnessVideoModal({ card, onClose }) {
             autoPlay
             playsInline
             preload="auto"
-            onEnded={showEndedState}
-            onLoadedMetadata={(event) => {
-              lastPlaybackTimeRef.current = event.currentTarget.currentTime || 0
-              checkForCtaTrigger(event.currentTarget)
-            }}
-            onPause={handlePause}
-            onPlay={handlePlaybackReset}
-            onPlaying={handlePlaybackStart}
-            onSeeking={clearWatchTimer}
-            onSeeked={handleSeeked}
-            onTimeUpdate={(event) => checkForCtaTrigger(event.currentTarget)}
-            onWaiting={clearWatchTimer}
           >
             Your browser does not support this video.
           </video>
-
-          {showEndCta ? (
-            <div className="witness-video-end-card" aria-live="polite">
-              <div
-                className="witness-video-end-panel"
-                style={{ '--witness-video-end-image': `url(${heroImage})` }}
-              >
-                <span>Keep going</span>
-                <h3>Everyone needs lasting hope.</h3>
-
-                <div className="witness-video-end-actions">
-                  <button
-                    className="witness-video-end-button witness-video-end-button-secondary"
-                    type="button"
-                    onClick={onClose}
-                  >
-                    Back to Page
-                  </button>
-                  <Link
-                    className="witness-video-end-button witness-video-end-button-primary"
-                    to={card.cta.path}
-                  >
-                    {card.cta.label}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ) : null}
         </div>
 
         <div className="witness-video-active-footer">

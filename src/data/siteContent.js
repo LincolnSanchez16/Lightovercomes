@@ -52,7 +52,7 @@ export const resourceCards = [
     label: 'Foundation',
     title: 'Christian Values',
     description:
-      'A clear look at the beliefs and convictions shaping the mission of Light Overcomes.',
+      'Building strong leaders with biblical truths for everyday life.',
     cta: 'Explore',
     path: '/christian-values',
     key: 'christian-values',
@@ -181,7 +181,6 @@ export const exchangeBookPage = {
   intro: [
     'Are you tired of believing lies that keep you trapped?',
     'Many of the battles we face begin in the mind. Thoughts like “God doesn’t love me anymore,” “I’ll never change,” “I’m too broken,” “My past defines me,” or “I don’t matter” can feel true in moments of fear, shame, temptation, or discouragement.',
-    'But not every thought that enters your mind comes from God.',
     'EXCHANGE was created to help you recognize the lies of the enemy and replace them with the truth of God’s Word. Each devotional exposes a common lie, answers it with Scripture, invites personal reflection, and leads you in prayer so you can renew your mind and walk in freedom.',
     'This is not just a book of positive thoughts. It is a spiritual tool for replacing deception with truth, shame with grace, fear with faith, and bondage with freedom through Jesus Christ.',
   ],

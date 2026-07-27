@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import {
   isEmailSignupVisible,
 } from '../../lib/emailSubscribers'
+import { OPEN_EMAIL_SIGNUP_EVENT } from '../../lib/emailSignupPrompt'
 import EmailSignupForm from './EmailSignupForm'
 
 const EXCLUDED_PATHS = new Set(['/privacy', '/privacy-policy', '/terms', '/tos'])
@@ -17,6 +18,17 @@ function EmailSignupPrompt() {
     isEmailSignupVisible && !EXCLUDED_PATHS.has(pathname)
   const isInlineSignupVisible = inlineSignupVisiblePath === pathname
   const isLauncherAvailable = isPromptAvailable && !isInlineSignupVisible
+
+  useEffect(() => {
+    if (!isPromptAvailable) {
+      return undefined
+    }
+
+    const openPrompt = () => setIsExpanded(true)
+
+    window.addEventListener(OPEN_EMAIL_SIGNUP_EVENT, openPrompt)
+    return () => window.removeEventListener(OPEN_EMAIL_SIGNUP_EVENT, openPrompt)
+  }, [isPromptAvailable])
 
   useEffect(() => {
     if (!isPromptAvailable) {

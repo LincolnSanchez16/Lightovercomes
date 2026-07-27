@@ -1,3 +1,5 @@
+import { ChevronDown } from 'lucide-react'
+import { useId, useState } from 'react'
 import { callingAllLeadersBook } from '../data/callingAllLeadersContent'
 
 function CallingAllLeaders() {
@@ -86,24 +88,43 @@ function CallingAllLeaders() {
             ))}
           </BookSection>
 
-          <BookSection title="100 Battle Cries to Break Bondage to Porn and Other Sins">
-            <p>{callingAllLeadersBook.battleCriesIntro}</p>
-          </BookSection>
+          <div className="warriors-disclosure-list">
+            <BookDisclosure title="100 Problems Linked to Pornography">
+              <div className="warriors-problem-groups">
+                {callingAllLeadersBook.problemGroups.map((group) => (
+                  <section key={group.title}>
+                    <h3>{group.title}</h3>
+                    <ul className="warriors-list">
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </section>
+                ))}
+              </div>
+            </BookDisclosure>
 
-          <BookSection title="100 Problems Linked to Pornography">
-            <div className="warriors-problem-groups">
-              {callingAllLeadersBook.problemGroups.map((group) => (
-                <section key={group.title}>
-                  <h3>{group.title}</h3>
-                  <ul className="warriors-list">
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          </BookSection>
+            <BookDisclosure title="Steps to Freedom from a Stronghold">
+              <p>{callingAllLeadersBook.freedomStepsIntro}</p>
+              <ol className="warriors-steps">
+                {callingAllLeadersBook.freedomSteps.map((step) => (
+                  <li key={step.title}>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </li>
+                ))}
+              </ol>
+              <p>{callingAllLeadersBook.freedomStepsClosing}</p>
+            </BookDisclosure>
+
+            <BookDisclosure title="100 Quotes to Help People Turn Away from Pornography">
+              <ol className="warriors-quotes">
+                {callingAllLeadersBook.quotes.map((quote) => (
+                  <li key={quote}>{quote}</li>
+                ))}
+              </ol>
+            </BookDisclosure>
+          </div>
 
           <BookSection title="A Prayer of Surrendering My Sexuality to the Holy Spirit">
             <div className="warriors-prayer">
@@ -112,30 +133,38 @@ function CallingAllLeaders() {
               ))}
             </div>
           </BookSection>
-
-          <BookSection title="Steps to Freedom from a Stronghold">
-            <p>{callingAllLeadersBook.freedomStepsIntro}</p>
-            <ol className="warriors-steps">
-              {callingAllLeadersBook.freedomSteps.map((step) => (
-                <li key={step.title}>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </li>
-              ))}
-            </ol>
-            <p>{callingAllLeadersBook.freedomStepsClosing}</p>
-          </BookSection>
-
-          <BookSection title="100 Quotes to Help People Turn Away from Pornography">
-            <ol className="warriors-quotes">
-              {callingAllLeadersBook.quotes.map((quote) => (
-                <li key={quote}>{quote}</li>
-              ))}
-            </ol>
-          </BookSection>
         </div>
       </div>
     </article>
+  )
+}
+
+function BookDisclosure({ title, children }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const panelId = useId()
+
+  return (
+    <section className={`warriors-disclosure${isOpen ? ' is-open' : ''}`}>
+      <button
+        type="button"
+        className="warriors-disclosure-summary"
+        aria-controls={panelId}
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((current) => !current)}
+      >
+        <span>{title}</span>
+        <ChevronDown aria-hidden="true" />
+      </button>
+      <div
+        id={panelId}
+        className="warriors-disclosure-panel"
+        aria-hidden={!isOpen}
+      >
+        <div className="warriors-disclosure-panel-clip">
+          <div className="warriors-disclosure-content">{children}</div>
+        </div>
+      </div>
+    </section>
   )
 }
 

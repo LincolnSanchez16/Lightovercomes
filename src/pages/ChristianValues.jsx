@@ -6,6 +6,7 @@ import {
   christianValuesIntro,
   christianValuesLibraryCards,
 } from '../data/siteContent'
+import { openEmailSignupPrompt } from '../lib/emailSignupPrompt'
 
 const CATEGORY_SWITCH_MS = 220
 
@@ -225,6 +226,18 @@ function ChristianValues() {
             ))}
           </div>
         </nav>
+
+        <aside className="values-resource-cta" aria-labelledby="values-resource-cta-title">
+          <div>
+            <span className="eyebrow">Free resource</span>
+            <h2 id="values-resource-cta-title">
+              Get a Christian life resource delivered to your inbox.
+            </h2>
+          </div>
+          <button type="button" onClick={openEmailSignupPrompt}>
+            Sign up and get the free resource
+          </button>
+        </aside>
 
         <div className="values-library values-library-single">
           <section className="values-category-section values-category-section-active">
