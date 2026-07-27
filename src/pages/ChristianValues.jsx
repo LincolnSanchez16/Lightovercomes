@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import panoBibleImage from '../assets/images/panobible.jpeg'
 import {
@@ -6,7 +6,7 @@ import {
   christianValuesIntro,
   christianValuesLibraryCards,
 } from '../data/siteContent'
-import { openEmailSignupPrompt } from '../lib/emailSignupPrompt'
+import ResourceClaimDialog from '../components/resources/ResourceClaimDialog'
 
 const CATEGORY_SWITCH_MS = 220
 
@@ -19,6 +19,7 @@ function ChristianValues() {
   const [searchQuery, setSearchQuery] = useState('')
   const [canScrollCategoriesLeft, setCanScrollCategoriesLeft] = useState(false)
   const [canScrollCategoriesRight, setCanScrollCategoriesRight] = useState(true)
+  const [isResourceClaimOpen, setIsResourceClaimOpen] = useState(false)
   const cardsRef = useRef([])
   const categoryNavRef = useRef(null)
   const switchTimerRef = useRef(null)
@@ -36,6 +37,7 @@ function ChristianValues() {
     value.title.toLowerCase().includes(normalizedSearchQuery),
   )
   const displayedValues = isSearching ? searchResults : activeValues
+  const closeResourceClaim = useCallback(() => setIsResourceClaimOpen(false), [])
 
   useEffect(() => {
     const categoryNav = categoryNavRef.current
@@ -234,8 +236,8 @@ function ChristianValues() {
               Get a Christian life resource delivered to your inbox.
             </h2>
           </div>
-          <button type="button" onClick={openEmailSignupPrompt}>
-            Sign up and get the free resource
+          <button type="button" onClick={() => setIsResourceClaimOpen(true)}>
+            Claim this resource
           </button>
         </aside>
 
@@ -368,6 +370,11 @@ function ChristianValues() {
           </div>
         </div>
       ) : null}
+
+      <ResourceClaimDialog
+        isOpen={isResourceClaimOpen}
+        onClose={closeResourceClaim}
+      />
     </>
   )
 }

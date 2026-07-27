@@ -2,3 +2,6 @@ project_id = "ybdstjtcottakchchrwg"
 
 [functions.subscribe-to-updates]
 verify_jwt = false
+
+[functions.claim-resource]
+verify_jwt = false

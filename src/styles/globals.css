@@ -2119,6 +2119,195 @@ button:focus-visible {
   transform: translateY(-1px);
 }
 
+.resource-claim-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(20, 42, 28, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: emailBackdropIn 180ms ease-out both;
+}
+
+.resource-claim-dialog {
+  width: min(34rem, calc(100vw - 3rem));
+  max-height: calc(100svh - 3rem);
+  overflow-y: auto;
+  padding: 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-border-strong) 84%, transparent);
+  background: var(--color-bg-elevated);
+  box-shadow: 0 26px 70px rgba(14, 34, 21, 0.28);
+  animation: emailPromptIn 240ms ease-out both;
+}
+
+.resource-claim-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.resource-claim-header h2 {
+  margin-top: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.resource-claim-close {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-control-bg);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.resource-claim-close:hover,
+.resource-claim-close:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-card-hover-bg);
+  color: var(--color-accent-dark);
+}
+
+.resource-claim-close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.resource-claim-copy {
+  max-width: 46ch;
+  margin-top: 1rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.resource-claim-form {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.resource-claim-form > label:not(.resource-claim-opt-in) {
+  margin-top: 0.2rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.resource-claim-form > input {
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.72rem 0.85rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  background: var(--color-control-bg);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.resource-claim-opt-in {
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.65rem;
+  margin-top: 0.45rem;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.resource-claim-opt-in input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0.15rem 0 0;
+  accent-color: var(--color-accent);
+}
+
+.resource-claim-privacy,
+.resource-claim-error {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.resource-claim-privacy a {
+  color: var(--color-accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.resource-claim-error {
+  color: #8a2f2f;
+  font-weight: 650;
+}
+
+.resource-claim-submit,
+.resource-claim-success button {
+  min-height: 3rem;
+  margin-top: 0.35rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.resource-claim-submit:hover,
+.resource-claim-submit:focus-visible,
+.resource-claim-success button:hover,
+.resource-claim-success button:focus-visible {
+  border-color: var(--color-accent-dark);
+  background: var(--color-accent-dark);
+}
+
+.resource-claim-submit:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.resource-claim-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.resource-claim-success {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.resource-claim-success p {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.resource-claim-success button {
+  width: fit-content;
+}
+
 .values-category-section-active {
   padding-top: 0;
 }
@@ -4532,6 +4721,21 @@ button:focus-visible {
     align-self: center;
   }
 
+  .resource-claim-backdrop {
+    padding: 0.75rem;
+  }
+
+  .resource-claim-dialog {
+    width: min(100%, 34rem);
+    max-height: calc(100svh - 1.5rem);
+    padding: 1.15rem;
+  }
+
+  .resource-claim-submit,
+  .resource-claim-success button {
+    width: 100%;
+  }
+
   .value-card {
     min-height: 8.8rem;
     padding: 1rem;
@@ -4833,6 +5037,8 @@ button:focus-visible {
   .email-signup-prompt,
   .email-signup-launcher,
   .email-signup-prompt-backdrop,
+  .resource-claim-dialog,
+  .resource-claim-backdrop,
   .witness-download-modal,
   .witness-download-backdrop {
     animation: none;
