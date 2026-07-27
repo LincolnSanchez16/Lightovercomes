@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import valuesResourceImage from '../assets/images/lightochero.jpeg'
 import panoBibleImage from '../assets/images/panobible.jpeg'
 import {
   christianValueCategories,
@@ -170,91 +171,88 @@ function ChristianValues() {
       </div>
 
       <section className="values-page">
-        <nav className="values-category-nav" aria-label="Christian values categories">
-          <div className="values-category-nav-header">
-            <span>Choose an area</span>
-            <div className="values-category-nav-controls" aria-label="Browse value categories">
-              <button
-                type="button"
-                aria-label="Previous value categories"
-                disabled={!canScrollCategoriesLeft}
-                onClick={() => scrollCategories(-1)}
-              >
-                <ChevronLeft aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next value categories"
-                disabled={!canScrollCategoriesRight}
-                onClick={() => scrollCategories(1)}
-              >
-                <ChevronRight aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-
-          <div className="values-category-nav-track" ref={categoryNavRef}>
-            <div className="values-search">
-              <label className="values-search-label" htmlFor="values-search-input">
-                Search Values
-              </label>
-              <input
-                id="values-search-input"
-                className="values-search-input"
-                type="search"
-                value={searchQuery}
-                placeholder="Search by title"
-                onChange={(event) => {
-                  cardsRef.current = []
-                  setSearchQuery(event.target.value)
-                }}
-              />
+        <div className="values-category-shell">
+          <nav className="values-category-nav" aria-label="Christian values categories">
+            <div className="values-category-nav-header">
+              <span>Explore Christian Life Values</span>
+              <div className="values-category-nav-controls" aria-label="Browse value categories">
+                <button
+                  type="button"
+                  aria-label="Previous value categories"
+                  disabled={!canScrollCategoriesLeft}
+                  onClick={() => scrollCategories(-1)}
+                >
+                  <ChevronLeft aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next value categories"
+                  disabled={!canScrollCategoriesRight}
+                  onClick={() => scrollCategories(1)}
+                >
+                  <ChevronRight aria-hidden="true" />
+                </button>
+              </div>
             </div>
 
-            {christianValueCategories.map((category) => (
-              <button
-                key={category.slug}
-                type="button"
-                className={
-                  activeCategory === category.slug
-                    ? 'values-category-nav-link values-category-nav-link-active'
-                    : 'values-category-nav-link'
-                }
-                onClick={() => handleCategorySelect(category.slug)}
-              >
-                <span className="values-category-nav-title">{category.title}</span>
-                <span className="values-category-nav-range">{category.rangeLabel}</span>
-              </button>
-            ))}
-          </div>
-        </nav>
+            <div className="values-category-nav-track" ref={categoryNavRef}>
+              <div className="values-search">
+                <label className="values-search-label" htmlFor="values-search-input">
+                  Search Values
+                </label>
+                <input
+                  id="values-search-input"
+                  className="values-search-input"
+                  type="search"
+                  value={searchQuery}
+                  placeholder="Search by title"
+                  onChange={(event) => {
+                    cardsRef.current = []
+                    setSearchQuery(event.target.value)
+                  }}
+                />
+              </div>
 
-        <aside className="values-resource-cta" aria-labelledby="values-resource-cta-title">
-          <div>
-            <span className="eyebrow">Free resource</span>
-            <h2 id="values-resource-cta-title">
-              Get a Christian life resource delivered to your inbox.
-            </h2>
-          </div>
-          <button type="button" onClick={() => setIsResourceClaimOpen(true)}>
-            Claim this resource
-          </button>
-        </aside>
+              {christianValueCategories.map((category) => (
+                <button
+                  key={category.slug}
+                  type="button"
+                  className={
+                    activeCategory === category.slug
+                      ? 'values-category-nav-link values-category-nav-link-active'
+                      : 'values-category-nav-link'
+                  }
+                  onClick={() => handleCategorySelect(category.slug)}
+                >
+                  <span className="values-category-nav-title">{category.title}</span>
+                  <span className="values-category-nav-range">{category.rangeLabel}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+        </div>
 
         <div className="values-library values-library-single">
           <section className="values-category-section values-category-section-active">
             <div className="values-category-header">
-              <div>
+              <div className="values-category-header-copy">
                 <span className="values-category-range">
                   {isSearching ? `${searchResults.length} found` : activeCategoryData.rangeLabel}
                 </span>
                 <h2>{isSearching ? 'Search Results' : activeCategoryData.title}</h2>
+                <p>
+                  {isSearching
+                    ? 'Matches are based only on value titles.'
+                    : activeCategoryData.description}
+                </p>
               </div>
-              <p>
-                {isSearching
-                  ? 'Matches are based only on value titles.'
-                  : activeCategoryData.description}
-              </p>
+
+              <aside className="values-resource-cta" aria-labelledby="values-resource-cta-title">
+                <h2 id="values-resource-cta-title">Get the full free resource.</h2>
+                <button type="button" onClick={() => setIsResourceClaimOpen(true)}>
+                  Claim this resource
+                </button>
+              </aside>
             </div>
 
             {displayedValues.length ? (
@@ -290,6 +288,22 @@ function ChristianValues() {
             )}
           </section>
         </div>
+
+        <aside
+          className="values-resource-footer-cta"
+          aria-labelledby="values-resource-footer-cta-title"
+        >
+          <div className="values-resource-footer-cta-media" aria-hidden="true">
+            <img src={valuesResourceImage} alt="" />
+            <div className="values-resource-footer-cta-overlay" />
+          </div>
+          <div className="values-resource-footer-cta-inner">
+            <h2 id="values-resource-footer-cta-title">Get the full free resource.</h2>
+            <button type="button" onClick={() => setIsResourceClaimOpen(true)}>
+              Claim this resource
+            </button>
+          </div>
+        </aside>
       </section>
 
       {selectedValue ? (

@@ -113,3 +113,9 @@ export const witnessVideoCards = [
     tone: 'red',
   },
 ]
+
+export const witnessLongFormVideo = {
+  id: 'lasting-hope-long-form',
+  title: "Everyone Needs Lasting Hope. Don't Miss Out!",
+  videoSrc: '/videos/witness-cards/lasting-hope-long-form.mp4',
+}

@@ -1,12 +1,19 @@
 import { Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { witnessVideoCards, witnessVideoIntro } from '../data/witnessCards'
+import witnessCtaImage from '../assets/images/lightochero.jpeg'
+import {
+  witnessLongFormVideo,
+  witnessVideoCards,
+  witnessVideoIntro,
+} from '../data/witnessCards'
 
 function WitnessVideos() {
   const [activeCardId, setActiveCardId] = useState(null)
   const [revealedCardIds, setRevealedCardIds] = useState(() => new Set())
   const cardsRef = useRef([])
-  const activeCard = witnessVideoCards.find((card) => card.id === activeCardId)
+  const activeCard =
+    witnessVideoCards.find((card) => card.id === activeCardId) ??
+    (activeCardId === witnessLongFormVideo.id ? witnessLongFormVideo : null)
 
   useEffect(() => {
     const cards = cardsRef.current.filter(Boolean)
@@ -90,12 +97,18 @@ function WitnessVideos() {
       </div>
 
       <aside className="witness-video-page-cta" aria-labelledby="lasting-hope-cta-title">
-        <span className="eyebrow">Keep going</span>
-        <h2 id="lasting-hope-cta-title">Everyone needs lasting hope.</h2>
-        <p>Watch a short message about the lasting hope found in Jesus.</p>
-        <button type="button" onClick={() => setActiveCardId('lasting-hope')}>
-          Learn More
-        </button>
+        <div className="witness-video-page-cta-media" aria-hidden="true">
+          <img src={witnessCtaImage} alt="" />
+          <div className="witness-video-page-cta-overlay" />
+        </div>
+        <div className="witness-video-page-cta-inner">
+          <h2 id="lasting-hope-cta-title">
+            Everyone Needs Lasting Hope. Don&apos;t Miss Out!
+          </h2>
+          <button type="button" onClick={() => setActiveCardId(witnessLongFormVideo.id)}>
+            Learn More
+          </button>
+        </div>
       </aside>
 
       {activeCard ? (
