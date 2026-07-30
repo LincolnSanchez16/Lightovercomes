@@ -461,7 +461,7 @@ button:focus-visible {
 
 .store-intro {
   width: min(100%, 58rem);
-  margin-bottom: clamp(3.25rem, 7vw, 5.5rem);
+  margin-bottom: clamp(2.25rem, 4vw, 3.5rem);
   text-align: center;
 }
 
@@ -562,6 +562,17 @@ button:focus-visible {
   color: #ffffff;
   box-shadow: 0 12px 30px rgba(53, 104, 72, 0.18);
   transform: translateY(-2px);
+}
+
+.store-card-grid-heading {
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4.5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .witness-download-callout {

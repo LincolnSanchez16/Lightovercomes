@@ -23,6 +23,8 @@ function Store() {
         </div>
       </header>
 
+      <h2 className="store-card-grid-heading">Let&apos;s Populate Heaven</h2>
+
       <div className="store-card-grid" aria-label="Witness cards available in the store">
         {witnessVideoCards.map((card) => {
           const cardImage = card.coverThumb || card.coverImage
