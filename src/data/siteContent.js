@@ -157,7 +157,7 @@ export const attributesOfGodPage = {
     'God is Reconciler',
     'God is Justifier',
     'God is Sanctifier',
-    'God Gives Wisdom',
+    'God is Redeemer',
     'God is a Covenant Making and Covenant Keeping God',
     'God is Victorious',
     'God is Glorious',

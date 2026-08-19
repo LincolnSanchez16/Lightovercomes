@@ -105,8 +105,8 @@ function Resources() {
                 to={card.path}
                 aria-label={`${card.title}. View preview.`}
               >
+                <span className="book-snippet-status">{card.label}</span>
                 <div className="book-snippet-image-wrap">
-                  <span className="book-snippet-status">{card.label}</span>
                   <img
                     className="book-snippet-image"
                     src={snippetImages[card.key]}

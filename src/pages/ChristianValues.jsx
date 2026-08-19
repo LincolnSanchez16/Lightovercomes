@@ -14,7 +14,7 @@ const CATEGORY_SWITCH_MS = 220
 function ChristianValues() {
   const initialCategory = christianValueCategories[0]?.slug ?? ''
   const [selectedValue, setSelectedValue] = useState(null)
-  const [modalImageFailed, setModalImageFailed] = useState(false)
+  const [modalImageAttempt, setModalImageAttempt] = useState(0)
   const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [isCategorySwitching, setIsCategorySwitching] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
@@ -38,6 +38,9 @@ function ChristianValues() {
     value.title.toLowerCase().includes(normalizedSearchQuery),
   )
   const displayedValues = isSearching ? searchResults : activeValues
+  const modalImageSources = selectedValue
+    ? Array.from(new Set([selectedValue.imageFull, selectedValue.imageThumb].filter(Boolean)))
+    : []
   const closeResourceClaim = useCallback(() => setIsResourceClaimOpen(false), [])
 
   useEffect(() => {
@@ -276,7 +279,7 @@ function ChristianValues() {
                       }}
                       transitionDelay={`${Math.min(index * 25, 160)}ms`}
                       onSelect={() => {
-                        setModalImageFailed(false)
+                        setModalImageAttempt(0)
                         setSelectedValue(value)
                       }}
                     />
@@ -331,14 +334,14 @@ function ChristianValues() {
               </button>
             </div>
 
-            {selectedValue.imageFull && !modalImageFailed ? (
+            {modalImageSources[modalImageAttempt] ? (
               <div className="value-modal-image-frame">
                 <img
                   className="value-modal-image"
-                  src={selectedValue.imageFull}
+                  src={modalImageSources[modalImageAttempt]}
                   alt={selectedValue.title}
                   decoding="async"
-                  onError={() => setModalImageFailed(true)}
+                  onError={() => setModalImageAttempt((attempt) => attempt + 1)}
                 />
               </div>
             ) : (
@@ -347,13 +350,13 @@ function ChristianValues() {
                 <div>
                   <h2 id="value-modal-title">{selectedValue.title}</h2>
                   <p className="value-modal-placeholder-copy">
-                    Content preview unavailable.
+                    Explore this Christian life value through its Scripture and meaning below.
                   </p>
                 </div>
               </div>
             )}
 
-            {selectedValue.imageFull && !modalImageFailed ? (
+            {modalImageSources[modalImageAttempt] ? (
               <h2 id="value-modal-title">{selectedValue.title}</h2>
             ) : null}
 
@@ -394,8 +397,11 @@ function ChristianValues() {
 }
 
 function ValueCard({ value, refCallback, transitionDelay, onSelect }) {
-  const [imageFailed, setImageFailed] = useState(false)
-  const showImage = value.imageThumb && !imageFailed
+  const [imageAttempt, setImageAttempt] = useState(0)
+  const imageSources = Array.from(
+    new Set([value.imageThumb, value.imageFull].filter(Boolean)),
+  )
+  const imageSrc = imageSources[imageAttempt]
 
   return (
     <button
@@ -405,20 +411,21 @@ function ValueCard({ value, refCallback, transitionDelay, onSelect }) {
       style={{ transitionDelay }}
       onClick={onSelect}
     >
-      {showImage ? (
+      {imageSrc ? (
         <div className="value-card-image-frame">
           <img
             className="value-card-image"
-            src={value.imageThumb}
+            src={imageSrc}
             alt=""
             loading="lazy"
             decoding="async"
-            onError={() => setImageFailed(true)}
+            onError={() => setImageAttempt((attempt) => attempt + 1)}
           />
         </div>
       ) : (
         <div className="value-card-image-frame value-card-image-fallback">
-          Content preview unavailable
+          <span>Christian Life Value</span>
+          <strong>{value.title}</strong>
         </div>
       )}
       <span className="value-card-index">{value.id}</span>

@@ -117,7 +117,7 @@ function CallingAllLeaders() {
               <p>{callingAllLeadersBook.freedomStepsClosing}</p>
             </BookDisclosure>
 
-            <BookDisclosure title="100 Quotes to Help People Turn Away from Pornography">
+            <BookDisclosure title="100 Freedom Statements to Help People Turn Away from Pornography">
               <ol className="warriors-quotes">
                 {callingAllLeadersBook.quotes.map((quote) => (
                   <li key={quote}>{quote}</li>

@@ -1,4 +1,4 @@
-import { Play } from 'lucide-react'
+import { Maximize2, Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import witnessCtaImage from '../assets/images/lightochero.jpeg'
 import {
@@ -106,7 +106,7 @@ function WitnessVideos() {
             Everyone Needs Lasting Hope. Don&apos;t Miss Out!
           </h2>
           <button type="button" onClick={() => setActiveCardId(witnessLongFormVideo.id)}>
-            Learn More
+            Learn More · {witnessLongFormVideo.duration}
           </button>
         </div>
       </aside>
@@ -138,7 +138,7 @@ function WitnessVideoCard({
       ref={refCallback}
       style={{ transitionDelay }}
       onClick={onActivate}
-      aria-label={`Watch ${card.title}`}
+      aria-label={`Watch ${card.title}, ${card.duration}`}
     >
       <div className="witness-video-cover">
         {showImage ? (
@@ -161,11 +161,32 @@ function WitnessVideoCard({
           <Play fill="currentColor" />
         </span>
       </div>
+      <span className="witness-video-meta" aria-hidden="true">
+        <span>Short video</span>
+        <strong>{card.duration}</strong>
+      </span>
     </button>
   )
 }
 
 function WitnessVideoModal({ card, onClose }) {
+  const videoRef = useRef(null)
+  const [isLandscape, setIsLandscape] = useState(false)
+
+  const openFullscreen = async () => {
+    const video = videoRef.current
+
+    if (!video) {
+      return
+    }
+
+    if (video.requestFullscreen) {
+      await video.requestFullscreen()
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen()
+    }
+  }
+
   return (
     <div
       className="witness-video-modal-backdrop"
@@ -173,18 +194,30 @@ function WitnessVideoModal({ card, onClose }) {
       onMouseDown={onClose}
     >
       <article
-        className="witness-video-modal"
+        className={`witness-video-modal${isLandscape ? ' witness-video-modal-landscape' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label={card.title}
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <button className="witness-video-modal-close" type="button" onClick={onClose}>
-          Close
-        </button>
+        <div className="witness-video-modal-actions">
+          <button
+            className="witness-video-fullscreen"
+            type="button"
+            onClick={openFullscreen}
+            title="View fullscreen"
+            aria-label="View video fullscreen"
+          >
+            <Maximize2 aria-hidden="true" />
+          </button>
+          <button className="witness-video-modal-close" type="button" onClick={onClose}>
+            Close
+          </button>
+        </div>
 
         <div className="witness-video-player-frame">
           <video
+            ref={videoRef}
             key={card.videoSrc}
             className="witness-video-player"
             src={card.videoSrc}
@@ -192,13 +225,17 @@ function WitnessVideoModal({ card, onClose }) {
             autoPlay
             playsInline
             preload="auto"
+            onLoadedMetadata={(event) => {
+              const video = event.currentTarget
+              setIsLandscape(video.videoWidth > video.videoHeight)
+            }}
           >
             Your browser does not support this video.
           </video>
         </div>
 
         <div className="witness-video-active-footer">
-          <span>Now playing</span>
+          <span>Now playing · {card.duration}</span>
           <h2>{card.title}</h2>
         </div>
       </article>

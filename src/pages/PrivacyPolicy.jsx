@@ -25,7 +25,7 @@ const sections = [
   {
     title: 'Third-Party Services',
     body: [
-      'This website may link to or embed content from third-party services, including Supabase for email-list storage, video platforms, store providers, donation platforms, analytics providers, email services, and hosting services.',
+      'This website may link to or embed content from third-party services, including Supabase for email-list and contact-message storage, video platforms, store providers, donation platforms, analytics providers, email services, and hosting services.',
       'When you use a third-party service, that provider may collect and process information under its own privacy policy and terms. For future giving, Subsplash may process donor and payment-related information according to its own policies.',
     ],
   },
@@ -77,7 +77,7 @@ function PrivacyPolicy() {
       <div className="terms-header">
         <span className="eyebrow">Privacy Policy</span>
         <h1>Privacy Policy</h1>
-        <p>Last updated: July 22, 2026</p>
+        <p>Last updated: August 19, 2026</p>
       </div>
 
       <div className="terms-content" aria-label="Privacy Policy content">
