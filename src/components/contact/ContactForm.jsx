@@ -8,7 +8,7 @@ import {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function ContactForm({ pagePath, source = 'website-contact' }) {
+function ContactForm({ onSuccess, pagePath, source = 'website-contact' }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -63,15 +63,17 @@ function ContactForm({ pagePath, source = 'website-contact' }) {
         throw new Error()
       }
 
-      setStatus('success')
-      setFeedback(
+      const successMessage =
         isContactFormEnabled
           ? 'Thank you. Your message has been sent.'
-          : 'Preview complete. No information was saved.',
-      )
+          : 'Preview complete. No information was saved.'
+
+      setStatus('success')
+      setFeedback(successMessage)
       setName('')
       setEmail('')
       setMessage('')
+      onSuccess?.(successMessage)
     } catch {
       setStatus('error')
       setFeedback('We could not send your message right now. Please try again shortly.')

@@ -1,3 +1,5 @@
+import { CircleCheck } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import aboutHomeImage from '../assets/images/about-forest.jpeg'
 import connectImage from '../assets/images/lightochero.jpeg'
@@ -5,10 +7,12 @@ import heroImage from '../assets/images/LOnewgreen.jpeg'
 import ContactForm from '../components/contact/ContactForm'
 import EmailSignupForm from '../components/email/EmailSignupForm'
 import { homeContent } from '../data/siteContent'
-import { isContactFormVisible } from '../lib/contactMessages'
+import { isContactFormEnabled, isContactFormVisible } from '../lib/contactMessages'
 import { isEmailSignupVisible } from '../lib/emailSubscribers'
 
 function Home() {
+  const [contactConfirmation, setContactConfirmation] = useState('')
+
   return (
     <>
       <section className="landing-hero hero-frame-shell">
@@ -99,15 +103,36 @@ function Home() {
 
       {isContactFormVisible ? (
         <section className="home-contact-section" aria-labelledby="home-contact-title">
-          <div className="home-contact-inner">
-            <div className="home-contact-copy">
-              <span className="eyebrow">Contact Light Overcomes</span>
-              <h2 id="home-contact-title">
-                What questions, ideas, or success stories would you like to share with us?
-              </h2>
-              <p>We would be glad to hear from you.</p>
-            </div>
-            <ContactForm pagePath="/" source="home-contact" />
+          <div
+            className={`home-contact-inner${contactConfirmation ? ' is-complete' : ''}`}
+          >
+            {contactConfirmation ? (
+              <div className="home-contact-success" role="status" aria-live="polite">
+                <CircleCheck aria-hidden="true" strokeWidth={1.5} />
+                <span className="eyebrow">Message Sent</span>
+                <h2 id="home-contact-title">Thank you for reaching out.</h2>
+                <p>
+                  {isContactFormEnabled
+                    ? 'Your message has been received. We appreciate you taking the time to share with us.'
+                    : contactConfirmation}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="home-contact-copy">
+                  <span className="eyebrow">Contact Light Overcomes</span>
+                  <h2 id="home-contact-title">
+                    What questions, ideas, or success stories would you like to share with us?
+                  </h2>
+                  <p>We would be glad to hear from you.</p>
+                </div>
+                <ContactForm
+                  onSuccess={setContactConfirmation}
+                  pagePath="/"
+                  source="home-contact"
+                />
+              </>
+            )}
           </div>
         </section>
       ) : null}
