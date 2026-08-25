@@ -34,6 +34,17 @@ export async function submitContactMessage({ name, email, message, source, pageP
   })
 
   if (!response.ok) {
-    throw new Error()
+    let errorMessage = 'We could not send your message right now. Please try again shortly.'
+
+    try {
+      const responseBody = await response.json()
+      if (typeof responseBody?.error === 'string' && responseBody.error.trim()) {
+        errorMessage = responseBody.error.trim()
+      }
+    } catch {
+      // Keep the generic message when the service does not return JSON.
+    }
+
+    throw new Error(errorMessage)
   }
 }

@@ -74,9 +74,13 @@ function ContactForm({ onSuccess, pagePath, source = 'website-contact' }) {
       setEmail('')
       setMessage('')
       onSuccess?.(successMessage)
-    } catch {
+    } catch (error) {
       setStatus('error')
-      setFeedback('We could not send your message right now. Please try again shortly.')
+      setFeedback(
+        error instanceof Error && error.message
+          ? error.message
+          : 'We could not send your message right now. Please try again shortly.',
+      )
     }
   }
 
