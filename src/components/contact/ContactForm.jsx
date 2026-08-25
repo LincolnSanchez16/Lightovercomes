@@ -19,14 +19,19 @@ function ContactForm({ onSuccess, pagePath, source = 'website-contact' }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
+    const formData = new FormData(event.currentTarget)
+    const submittedName = String(formData.get('name') || '')
+    const submittedEmail = String(formData.get('email') || '')
+    const submittedMessage = String(formData.get('message') || '')
+
     if (website) {
       setStatus('success')
       return
     }
 
-    const normalizedName = name.trim()
-    const normalizedEmail = email.trim().toLowerCase()
-    const normalizedMessage = message.trim()
+    const normalizedName = submittedName.trim()
+    const normalizedEmail = submittedEmail.trim().toLowerCase()
+    const normalizedMessage = submittedMessage.trim()
 
     if (!normalizedName) {
       setStatus('error')

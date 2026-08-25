@@ -1,6 +1,8 @@
 const allowedProductionOrigins = new Set([
   'https://lightovercomes.com',
   'https://www.lightovercomes.com',
+  'https://lightovercomes.org',
+  'https://www.lightovercomes.org',
 ])
 
 const emailPattern =
@@ -114,6 +116,7 @@ Deno.serve(async (request) => {
   const origin = request.headers.get('origin')
 
   if (!isAllowedOrigin(origin)) {
+    console.warn('Rejected contact message origin.', origin || 'missing')
     return jsonResponse(origin, 403, { error: 'Unable to send this message.' })
   }
 
