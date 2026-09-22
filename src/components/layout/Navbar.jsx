@@ -84,25 +84,42 @@ function Navbar() {
           aria-label="Primary navigation"
           className={isMenuOpen ? 'site-nav site-nav-open' : 'site-nav'}
         >
-          {navigationLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              className={() => {
-                const isActive =
-                  (link.path === '/resources' && isResourcesRoute) ||
-                  (link.path === '/witness-cards' && isWitnessRoute) ||
-                  (link.path === '/store' && isStoreRoute) ||
-                  pathname === link.path ||
-                  (link.path === '/' && pathname === '/home')
+          {navigationLinks.map((link) => {
+            if (link.external) {
+              return (
+                <a
+                  key={link.path}
+                  className="nav-link"
+                  href={link.path}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            }
 
-                return isActive ? 'nav-link nav-link-active' : 'nav-link'
-              }}
-              to={link.path}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+            return (
+              <NavLink
+                key={link.path}
+                className={() => {
+                  const isActive =
+                    (link.path === '/resources' && isResourcesRoute) ||
+                    (link.path === '/witness-cards' && isWitnessRoute) ||
+                    (link.path === '/store' && isStoreRoute) ||
+                    pathname === link.path ||
+                    (link.path === '/' && pathname === '/home')
+
+                  return isActive ? 'nav-link nav-link-active' : 'nav-link'
+                }}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            )
+          })}
         </nav>
       </div>
     </header>

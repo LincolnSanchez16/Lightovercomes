@@ -5,6 +5,11 @@ export const tagline =
 
 export const navigationLinks = [
   { label: 'Home', path: '/' },
+  {
+    label: 'Give',
+    path: 'https://subsplash.com/u/-H8TBNN/give',
+    external: true,
+  },
   { label: 'About', path: '/about' },
   { label: 'Resources', path: '/resources' },
   { label: 'Find & Share Hope', path: '/witness-cards' },
