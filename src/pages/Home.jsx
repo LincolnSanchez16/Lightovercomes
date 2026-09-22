@@ -7,7 +7,7 @@ import connectImage from '../assets/images/lightochero.jpeg'
 import heroImage from '../assets/images/LOnewgreen.jpeg'
 import ContactForm from '../components/contact/ContactForm'
 import EmailSignupForm from '../components/email/EmailSignupForm'
-import { homeContent } from '../data/siteContent'
+import { homeContent, isGivingVisible } from '../data/siteContent'
 import { isContactFormEnabled, isContactFormVisible } from '../lib/contactMessages'
 import { isEmailSignupVisible } from '../lib/emailSubscribers'
 
@@ -138,29 +138,31 @@ function Home() {
         </section>
       ) : null}
 
-      <section className="home-section home-feature-section home-feature-giving">
-        <div className="home-feature-media" aria-hidden="true">
-          <img src={givingImage} alt="" />
-          <div className="home-feature-overlay" />
-        </div>
-        <div className="home-feature-inner">
-          <div className="home-feature-copy">
-            <span className="eyebrow">Give</span>
-            <h2>{homeContent.givingCta.title}</h2>
-            <p>{homeContent.givingCta.description}</p>
+      {isGivingVisible ? (
+        <section className="home-section home-feature-section home-feature-giving">
+          <div className="home-feature-media" aria-hidden="true">
+            <img src={givingImage} alt="" />
+            <div className="home-feature-overlay" />
           </div>
-          <div className="home-feature-action">
-            <a
-              className="inline-page-button"
-              href={homeContent.givingCta.path}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {homeContent.givingCta.label}
-            </a>
+          <div className="home-feature-inner">
+            <div className="home-feature-copy">
+              <span className="eyebrow">Give</span>
+              <h2>{homeContent.givingCta.title}</h2>
+              <p>{homeContent.givingCta.description}</p>
+            </div>
+            <div className="home-feature-action">
+              <a
+                className="inline-page-button"
+                href={homeContent.givingCta.path}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {homeContent.givingCta.label}
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </>
   )
 }
