@@ -3,7 +3,7 @@ export const organizationName = 'Light Overcomes'
 export const tagline =
   'Helping people know and follow Jesus, grow in faith, and become transformed transformers.'
 
-export const isGivingVisible = false
+export const isGivingVisible = true
 
 export const navigationLinks = [
   { label: 'Home', path: '/' },
