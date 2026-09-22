@@ -2,6 +2,7 @@ import { CircleCheck } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import aboutHomeImage from '../assets/images/about-forest.jpeg'
+import givingImage from '../assets/images/giving.jpeg'
 import connectImage from '../assets/images/lightochero.jpeg'
 import heroImage from '../assets/images/LOnewgreen.jpeg'
 import ContactForm from '../components/contact/ContactForm'
@@ -136,6 +137,30 @@ function Home() {
           </div>
         </section>
       ) : null}
+
+      <section className="home-section home-feature-section home-feature-giving">
+        <div className="home-feature-media" aria-hidden="true">
+          <img src={givingImage} alt="" />
+          <div className="home-feature-overlay" />
+        </div>
+        <div className="home-feature-inner">
+          <div className="home-feature-copy">
+            <span className="eyebrow">Give</span>
+            <h2>{homeContent.givingCta.title}</h2>
+            <p>{homeContent.givingCta.description}</p>
+          </div>
+          <div className="home-feature-action">
+            <a
+              className="inline-page-button"
+              href={homeContent.givingCta.path}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {homeContent.givingCta.label}
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   )
 }

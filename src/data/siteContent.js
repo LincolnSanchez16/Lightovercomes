@@ -74,6 +74,7 @@ export const resourceCards = [
 ]
 
 export const shopStoreUrl = 'https://light-overcomes.printify.me/'
+export const givingUrl = 'https://subsplash.com/u/-H8TBNN/give'
 
 export const storeContent = {
   eyebrow: 'Store',
@@ -269,6 +270,13 @@ export const homeContent = {
     title: 'Generations transformed by Jesus.',
     label: 'Learn More About Us',
     path: '/about',
+  },
+  givingCta: {
+    title: 'Give with purpose.',
+    description:
+      'Your generosity helps Light Overcomes share the hope of Jesus and equip people to live transformed.',
+    label: 'Give Now',
+    path: givingUrl,
   },
 }
 
